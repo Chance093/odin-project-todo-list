@@ -4,4 +4,9 @@ function Todo(task, date) {
     return { task, date, dateCreated, taskComplete };
 }
 
-export default Todo;
+function Project(name, description) {
+    let todos = [];
+    return { name, description, todos };
+}
+
+export { Todo, Project };
