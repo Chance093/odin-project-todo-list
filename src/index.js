@@ -1,5 +1,6 @@
 import './style.css';
 import { Todo, Project, ProjectFolder } from './factory-functions';
+import { updateProjectFolderList } from './dom';
 
 
 const input = document.querySelector('#test');
@@ -33,7 +34,7 @@ function addProject() {
     console.table(projects);
 }
 
-projectButton.addEventListener('click', addProject);
+// projectButton.addEventListener('click', addProject);
 
 
 
@@ -48,6 +49,7 @@ function addProjectFolder() {
     const newProjFolder = ProjectFolder(projFolder);
     projectFolders.push(newProjFolder);
     console.table(projectFolders);
+    updateProjectFolderList(projectFolders);
 }
 
 pfButton.addEventListener('click', addProjectFolder);

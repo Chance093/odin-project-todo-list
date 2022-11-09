@@ -137,6 +137,7 @@ body {
     display: grid;
     grid-template: 50px 1fr / 400px 1fr;
     height: 100vh;
+    color: white;
 }
 
 header {
