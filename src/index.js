@@ -1,14 +1,10 @@
 import './style.css';
+import Todo from './factory-functions';
 
 
 const input = document.querySelector('#test');
 const button = document.querySelector('.testbutton');
 const todos = [];
-
-function Todo(task, date) {
-    let dateCreated = new Date();
-    return { task, date, dateCreated };
-}
 
 function addTodo() {
     const task = input.value;
