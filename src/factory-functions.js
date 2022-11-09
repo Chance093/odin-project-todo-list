@@ -9,4 +9,9 @@ function Project(name, description) {
     return { name, description, todos };
 }
 
-export { Todo, Project };
+function ProjectFolder(name) {
+    let projects = [];
+    return { name, projects }
+}
+
+export { Todo, Project, ProjectFolder };
