@@ -1,6 +1,6 @@
 import './style.css';
 import { Todo, Project, ProjectFolder } from './factory-functions';
-import { displayFolders } from './dom';
+import { displayFolders, removeModal } from './dom';
 
 
 const input = document.querySelector('#test');
@@ -24,14 +24,15 @@ button.addEventListener('click', addTodo);
 const projectName = document.querySelector('#p-name');
 const projectDescription = document.querySelector('#p-desc')
 const projectButton = document.querySelector('.p-button');
-const projects = [];
 
 function addProject(e) {
     const project = projectName.value;
     const description = projectDescription.value;
     const newProj = Project(project, description);
-    const index = e.target.dataset.buttonIndex
+    const index = e.target.dataset.buttonIndex;
     projectFolders[index].projects.push(newProj);
+    removeModal();
+    console.log(projectFolders);
 }
 
 // Click project add button associated with project folder

@@ -9,12 +9,11 @@ function displayFolders(folders) {
         const button = document.createElement('button');
         const div = document.createElement('div');
         const projectList = document.createElement('ul');
-        const modalButton = document.querySelector('.p-button');
         projectList.classList.add('project-list');
         projectList.setAttribute('data-pf-index', index);
         button.classList.add('pf-button');
-        modalButton.setAttribute('data-button-index', index);
-        button.addEventListener('click', requestProjects);
+        button.setAttribute('data-button-index', index);
+        button.addEventListener('click', displayModal);
         div.textContent = folder.name;
         button.textContent = '+';
         div.appendChild(button);
@@ -25,10 +24,20 @@ function displayFolders(folders) {
     container.appendChild(list);
 }
 
-function requestProjects() {
+function displayModal(e) {
     const modal = document.querySelector('.modal-container');
+    const modalButton = document.querySelector('.p-button');
+    const index = e.target.dataset.buttonIndex;
+    modalButton.setAttribute('data-button-index', index);
     modal.classList.add('show');
 }
 
+function removeModal() {
+    const modal = document.querySelector('.modal-container');
+    const modalButton = document.querySelector('.p-button');
+    modalButton.removeAttribute('data-button-index');
+    modal.classList.remove('show');
+}
 
-export { displayFolders };
+
+export { displayFolders, removeModal };
