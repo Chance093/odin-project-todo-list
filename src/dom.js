@@ -9,10 +9,11 @@ function displayFolders(folders) {
         const button = document.createElement('button');
         const div = document.createElement('div');
         const projectList = document.createElement('ul');
+        const modalButton = document.querySelector('.p-button');
         projectList.classList.add('project-list');
         projectList.setAttribute('data-pf-index', index);
         button.classList.add('pf-button');
-        button.setAttribute('data-button-index', index);
+        modalButton.setAttribute('data-button-index', index);
         button.addEventListener('click', requestProjects);
         div.textContent = folder.name;
         button.textContent = '+';

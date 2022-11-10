@@ -26,15 +26,23 @@ const projectDescription = document.querySelector('#p-desc')
 const projectButton = document.querySelector('.p-button');
 const projects = [];
 
-function addProject() {
+function addProject(e) {
     const project = projectName.value;
     const description = projectDescription.value;
     const newProj = Project(project, description);
-    projects.push(newProj);
-    console.table(projects);
+    const index = e.target.dataset.buttonIndex
+    projectFolders[index].projects.push(newProj);
 }
 
-// projectButton.addEventListener('click', addProject);
+// Click project add button associated with project folder
+// Display modal to add project
+// Fill out inputs
+// Click submit button
+// Add project object to project folder array
+// Display project object info on main section
+// Run function that displays all projects in project folder
+
+projectButton.addEventListener('click', addProject);
 
 
 
@@ -48,7 +56,6 @@ function addProjectFolder() {
     const projFolder = pfName.value;
     const newProjFolder = ProjectFolder(projFolder);
     projectFolders.push(newProjFolder);
-    console.table(projectFolders);
     displayFolders(projectFolders);
 }
 
