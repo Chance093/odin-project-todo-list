@@ -20,6 +20,12 @@ function displayFolders(folders) {
         projFolder.appendChild(div);
         projFolder.appendChild(projectList);
         list.appendChild(projFolder);
+        const projects = folder.projects;
+        projects.forEach((project, index) => {
+            const proj = document.createElement('li');
+            proj.textContent = project.name;
+            projectList.appendChild(proj)
+        })
     })
     container.appendChild(list);
 }

@@ -32,6 +32,7 @@ function addProject(e) {
     const index = e.target.dataset.buttonIndex;
     projectFolders[index].projects.push(newProj);
     removeModal();
+    displayFolders(projectFolders);
     console.log(projectFolders);
 }
 
@@ -40,8 +41,8 @@ function addProject(e) {
 // Fill out inputs
 // Click submit button
 // Add project object to project folder array
+// Display all projects on sidebar
 // Display project object info on main section
-// Run function that displays all projects in project folder
 
 projectButton.addEventListener('click', addProject);
 
