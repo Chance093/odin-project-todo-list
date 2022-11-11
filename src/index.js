@@ -1,6 +1,6 @@
 import './style.css';
 import { Todo, Project, ProjectFolder } from './factory-functions';
-import { displayFolders, removeModal } from './dom';
+import { displayFolders, displayProject, removeModal } from './dom';
 
 
 const input = document.querySelector('#test');
@@ -15,14 +15,14 @@ function addTodo() {
     console.table(todos);
 }
 
-button.addEventListener('click', addTodo);
+// button.addEventListener('click', addTodo);
 
 
 
 
 
 const projectName = document.querySelector('#p-name');
-const projectDescription = document.querySelector('#p-desc')
+const projectDescription = document.querySelector('#p-desc');
 const projectButton = document.querySelector('.p-button');
 
 function addProject(e) {
@@ -33,6 +33,7 @@ function addProject(e) {
     projectFolders[index].projects.push(newProj);
     removeModal();
     displayFolders(projectFolders);
+    displayProject(newProj);
     console.log(projectFolders);
 }
 
