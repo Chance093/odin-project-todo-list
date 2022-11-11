@@ -1,3 +1,5 @@
+import { selectProject } from "./index";
+
 const container = document.querySelector('.project-folder-list');
 const pfButton = document.querySelector('.pf-button');
 
@@ -9,6 +11,7 @@ function displayFolders(folders) {
         const button = document.createElement('button');
         const div = document.createElement('div');
         const projectList = document.createElement('ul');
+        const pfIndex = index;
         projectList.classList.add('project-list');
         projectList.setAttribute('data-pf-index', index);
         button.classList.add('pf-button');
@@ -23,12 +26,17 @@ function displayFolders(folders) {
         const projects = folder.projects;
         projects.forEach((project, index) => {
             const proj = document.createElement('li');
+            proj.setAttribute('data-p-index', index);
+            proj.setAttribute('data-pf-index', pfIndex);
             proj.textContent = project.name;
             projectList.appendChild(proj)
+            proj.addEventListener('click', selectProject);
         })
     })
     container.appendChild(list);
 }
+
+
 
 function displayModal(e) {
     const modal = document.querySelector('.modal-container');

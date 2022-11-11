@@ -37,13 +37,12 @@ function addProject(e) {
     console.log(projectFolders);
 }
 
-// Click project add button associated with project folder
-// Display modal to add project
-// Fill out inputs
-// Click submit button
-// Add project object to project folder array
-// Display all projects on sidebar
-// Display project object info on main section
+function selectProject(e) {
+    const index = e.target.dataset.pIndex;
+    const pfIndex = e.target.dataset.pfIndex;
+    const proj = projectFolders[pfIndex].projects[index];
+    displayProject(proj);
+}
 
 projectButton.addEventListener('click', addProject);
 
@@ -63,3 +62,5 @@ function addProjectFolder() {
 }
 
 pfButton.addEventListener('click', addProjectFolder);
+
+export { selectProject };
