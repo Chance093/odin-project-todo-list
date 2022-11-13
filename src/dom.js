@@ -82,6 +82,12 @@ function displayProject(project) {
     mainContainer.appendChild(description);
     mainContainer.appendChild(todoHeaderContainer);
     mainContainer.appendChild(todoList);
+    const todos = project.todos;
+    todos.forEach((todo, index) => {
+        const todoItem = document.createElement('li');
+        todoItem.textContent = todo.task;
+        todoList.appendChild(todoItem);
+    })
 }
 
 
