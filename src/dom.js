@@ -16,7 +16,7 @@ function displayFolders(folders) {
         projectList.setAttribute('data-pf-index', index);
         button.classList.add('pf-button');
         button.setAttribute('data-button-index', index);
-        button.addEventListener('click', displayModal);
+        button.addEventListener('click', displayProjectModal);
         div.textContent = folder.name;
         button.textContent = '+';
         div.appendChild(button);
@@ -38,23 +38,41 @@ function displayFolders(folders) {
 
 
 
-function displayModal(e) {
-    const modal = document.querySelector('.modal-container');
+function displayProjectModal(e) {
+    const modal = document.querySelector('.project-modal');
     const modalButton = document.querySelector('.p-button');
     const index = e.target.dataset.buttonIndex;
     modalButton.setAttribute('data-button-index', index);
     modal.classList.add('show');
 }
 
-function removeModal() {
-    const modal = document.querySelector('.modal-container');
+function removeProjectModal() {
+    const modal = document.querySelector('.project-modal');
     const modalButton = document.querySelector('.p-button');
     modalButton.removeAttribute('data-button-index');
     modal.classList.remove('show');
 }
 
+function displayTodoModal(e) {
+    const modal = document.querySelector('.todo-modal');
+    const modalButton = document.querySelector('.td-button');
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    modalButton.setAttribute('data-pf-index', pfIndex);
+    modalButton.setAttribute('data-p-index', pIndex);
+    modal.classList.add('show');
+}
 
-function displayProject(project) {
+function removeTodoModal() {
+    const modal = document.querySelector('.todo-modal');
+    const modalButton = document.querySelector('.td-button');
+    modalButton.removeAttribute('data-pf-index');
+    modalButton.removeAttribute('data-p-index');
+    modal.classList.remove('show');
+}
+
+
+function displayProject(project, pfIndex, pIndex) {
     const mainContainer = document.querySelector('main');
     mainContainer.innerHTML = '';
     const divHeader = document.createElement('div');
@@ -65,6 +83,9 @@ function displayProject(project) {
     const projectDelete = document.createElement('button');
     const todoHeader = document.createElement('h2');
     const addTodo = document.createElement('button');
+    addTodo.setAttribute('data-pf-index', pfIndex);
+    addTodo.setAttribute('data-p-index', pIndex);
+    addTodo.addEventListener('click', displayTodoModal);
     divHeader.classList.add('p-header');
     description.classList.add('p-description');
     todoHeaderContainer.classList.add('todo-header');
@@ -83,7 +104,7 @@ function displayProject(project) {
     mainContainer.appendChild(todoHeaderContainer);
     mainContainer.appendChild(todoList);
     const todos = project.todos;
-    todos.forEach((todo, index) => {
+    todos.forEach((todo) => {
         const todoItem = document.createElement('li');
         todoItem.textContent = todo.task;
         todoList.appendChild(todoItem);
@@ -91,4 +112,4 @@ function displayProject(project) {
 }
 
 
-export { displayFolders, removeModal, displayProject };
+export { displayFolders, removeProjectModal, displayProject, removeTodoModal };

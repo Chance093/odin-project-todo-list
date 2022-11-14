@@ -1,21 +1,24 @@
 import './style.css';
 import { Todo, Project, ProjectFolder } from './factory-functions';
-import { displayFolders, displayProject, removeModal } from './dom';
+import { displayFolders, displayProject, removeProjectModal, removeTodoModal } from './dom';
 
 
-const input = document.querySelector('#test');
-const button = document.querySelector('.testbutton');
-const todos = [];
+const taskName = document.querySelector('#task-name');
+const dueDate = document.querySelector('#due-date');
+const todoButton = document.querySelector('.td-button');
 
-function addTodo() {
-    const task = input.value;
-    const date = '10/10/2022';
+function addTodo(e) {
+    const task = taskName.value;
+    const date = dueDate.value
     const newTodo = Todo(task, date);
-    todos.push(newTodo);
-    console.table(todos);
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    projectFolders[pfIndex].projects[pIndex].todos.push(newTodo);
+    removeTodoModal();
+    displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
 }
 
-// button.addEventListener('click', addTodo);
+todoButton.addEventListener('click', addTodo);
 
 
 
@@ -31,9 +34,9 @@ function addProject(e) {
     const newProj = Project(project, description);
     const index = e.target.dataset.buttonIndex;
     projectFolders[index].projects.push(newProj);
-    removeModal();
+    removeProjectModal();
     displayFolders(projectFolders);
-    displayProject(newProj);
+    displayProject(newProj, index, -1);
     console.log(projectFolders);
 }
 
@@ -41,7 +44,7 @@ function selectProject(e) {
     const index = e.target.dataset.pIndex;
     const pfIndex = e.target.dataset.pfIndex;
     const proj = projectFolders[pfIndex].projects[index];
-    displayProject(proj);
+    displayProject(proj, pfIndex, index);
 }
 
 projectButton.addEventListener('click', addProject);
