@@ -1,9 +1,8 @@
-import { selectProject } from "./index";
-
-const container = document.querySelector('.project-folder-list');
-const pfButton = document.querySelector('.pf-button');
+import { projectFolders } from "../index";
+import { displayProjectModal, displayTodoModal } from "./modal"
 
 function displayFolders(folders) {
+    const container = document.querySelector('.project-folder-list');
     container.innerHTML = '';
     const list = document.createElement('ul');
     folders.forEach((folder, index) => {
@@ -36,39 +35,11 @@ function displayFolders(folders) {
     container.appendChild(list);
 }
 
-
-
-function displayProjectModal(e) {
-    const modal = document.querySelector('.project-modal');
-    const modalButton = document.querySelector('.p-button');
-    const index = e.target.dataset.buttonIndex;
-    modalButton.setAttribute('data-button-index', index);
-    modal.classList.add('show');
-}
-
-function removeProjectModal() {
-    const modal = document.querySelector('.project-modal');
-    const modalButton = document.querySelector('.p-button');
-    modalButton.removeAttribute('data-button-index');
-    modal.classList.remove('show');
-}
-
-function displayTodoModal(e) {
-    const modal = document.querySelector('.todo-modal');
-    const modalButton = document.querySelector('.td-button');
+function selectProject(e) {
+    const index = e.target.dataset.pIndex;
     const pfIndex = e.target.dataset.pfIndex;
-    const pIndex = e.target.dataset.pIndex;
-    modalButton.setAttribute('data-pf-index', pfIndex);
-    modalButton.setAttribute('data-p-index', pIndex);
-    modal.classList.add('show');
-}
-
-function removeTodoModal() {
-    const modal = document.querySelector('.todo-modal');
-    const modalButton = document.querySelector('.td-button');
-    modalButton.removeAttribute('data-pf-index');
-    modalButton.removeAttribute('data-p-index');
-    modal.classList.remove('show');
+    const proj = projectFolders[pfIndex].projects[index];
+    displayProject(proj, pfIndex, index);
 }
 
 
@@ -112,4 +83,4 @@ function displayProject(project, pfIndex, pIndex) {
 }
 
 
-export { displayFolders, removeProjectModal, displayProject, removeTodoModal };
+export { displayFolders, displayProject };
