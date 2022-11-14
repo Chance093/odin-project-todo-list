@@ -1,7 +1,7 @@
 import './style.css';
-import { addProjectFolder } from './controllers/project-folder';
-import { addProject } from './controllers/project';
-import { addTodo } from './controllers/todo';
+import { addProjectFolder } from './controllers/project-folders';
+import { addProject } from './controllers/projects';
+import { addTodo } from './controllers/todos';
 
 const projectFolders = [];
 
