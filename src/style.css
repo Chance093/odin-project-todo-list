@@ -157,6 +157,24 @@ header {
 .sidebar {
     grid-area: 2 / 1 / 3 / 2;
     background-color: var(--secondarycolor);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar>.links {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.sidebar>.links>.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 main {
