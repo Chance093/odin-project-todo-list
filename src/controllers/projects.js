@@ -16,4 +16,19 @@ function addProject(e) {
     displayProject(newProj, index, projectFolders[index].projects.length - 1);
 }
 
-export { addProject };
+function selectProject(e) {
+    const index = e.target.dataset.pIndex;
+    const pfIndex = e.target.dataset.pfIndex;
+    const proj = projectFolders[pfIndex].projects[index];
+    displayProject(proj, pfIndex, index);
+}
+
+function removeProject(e) {
+    const pIndex = e.target.dataset.pIndex;
+    const pfIndex = e.target.dataset.pfIndex;
+    projectFolders[pfIndex].projects.splice(pIndex, 1);
+    displayFolders(projectFolders);
+    displayProject(projectFolders[0].projects[0], 0, 0);
+}
+
+export { addProject, removeProject, selectProject };

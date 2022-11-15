@@ -1,5 +1,5 @@
-import { projectFolders } from "../index";
-import { displayProjectModal, displayTodoModal } from "./modal"
+import { displayProjectModal, displayTodoModal } from "./modal";
+import { removeProject, selectProject } from "../controllers/projects";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -33,12 +33,7 @@ function displayFolders(folders) {
     })
 }
 
-function selectProject(e) {
-    const index = e.target.dataset.pIndex;
-    const pfIndex = e.target.dataset.pfIndex;
-    const proj = projectFolders[pfIndex].projects[index];
-    displayProject(proj, pfIndex, index);
-}
+
 
 
 function displayProject(project, pfIndex, pIndex) {
@@ -55,6 +50,10 @@ function displayProject(project, pfIndex, pIndex) {
     addTodo.setAttribute('data-pf-index', pfIndex);
     addTodo.setAttribute('data-p-index', pIndex);
     addTodo.addEventListener('click', displayTodoModal);
+    projectDelete.classList.add('p-delete');
+    projectDelete.setAttribute('data-pf-index', pfIndex);
+    projectDelete.setAttribute('data-p-index', pIndex);
+    projectDelete.addEventListener('click', removeProject);
     divHeader.classList.add('p-header');
     description.classList.add('p-description');
     todoHeaderContainer.classList.add('todo-header');
