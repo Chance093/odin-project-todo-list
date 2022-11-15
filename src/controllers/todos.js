@@ -16,4 +16,12 @@ function addTodo(e) {
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
 }
 
-export { addTodo };
+function removeTodo(e) {
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1);
+    displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex)
+}
+
+export { addTodo, removeTodo };

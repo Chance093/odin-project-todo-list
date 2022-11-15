@@ -1,5 +1,6 @@
 import { displayProjectModal, displayTodoModal } from "./modal";
 import { removeProject, selectProject } from "../controllers/projects";
+import { removeTodo } from "../controllers/todos";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -72,7 +73,7 @@ function displayProject(project, pfIndex, pIndex) {
     mainContainer.appendChild(todoHeaderContainer);
     mainContainer.appendChild(todoList);
     const todos = project.todos;
-    todos.forEach((todo) => {
+    todos.forEach((todo, tdIndex) => {
         const todoContainer = document.createElement('li');
         const leftContainer = document.createElement('div');
         const rightContainer = document.createElement('div');
@@ -81,6 +82,10 @@ function displayProject(project, pfIndex, pIndex) {
         const date = document.createElement('p');
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
+        deleteButton.setAttribute('data-pf-index', pfIndex);
+        deleteButton.setAttribute('data-p-index', pIndex);
+        deleteButton.setAttribute('data-td-index', tdIndex);
+        deleteButton.addEventListener('click', removeTodo);
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
