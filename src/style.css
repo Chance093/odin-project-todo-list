@@ -177,6 +177,21 @@ header {
     cursor: pointer;
 }
 
+.sidebar>.links>.project-folder-list>li>div {
+    font-size: 2rem;
+    color: var(--tertiarycolor);
+    border-bottom: 2px solid var(--tertiarycolor);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.sidebar>.links>.project-folder-list>li>.project-list>li {
+    font-size: 1.1rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
 main {
     grid-area: 2 / 2 / 3 / 3;
     background-color: var(--primarycolor);

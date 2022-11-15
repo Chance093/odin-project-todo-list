@@ -2,9 +2,8 @@ import { projectFolders } from "../index";
 import { displayProjectModal, displayTodoModal } from "./modal"
 
 function displayFolders(folders) {
-    const container = document.querySelector('.project-folder-list');
-    container.innerHTML = '';
-    const list = document.createElement('ul');
+    const list = document.querySelector('.project-folder-list');
+    list.innerHTML = '';
     folders.forEach((folder, index) => {
         const projFolder = document.createElement('li');
         const button = document.createElement('button');
@@ -32,7 +31,6 @@ function displayFolders(folders) {
             proj.addEventListener('click', selectProject);
         })
     })
-    container.appendChild(list);
 }
 
 function selectProject(e) {
