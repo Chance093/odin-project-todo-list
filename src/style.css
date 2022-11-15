@@ -182,6 +182,11 @@ main>.p-header>button {
     height: 2rem;
 }
 
+main>.p-description {
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
 .modal-container {
     position: fixed;
     top: 0;
