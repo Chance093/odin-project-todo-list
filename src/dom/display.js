@@ -64,7 +64,7 @@ function displayProject(project, pfIndex, pIndex) {
     projectHeader.textContent = project.name;
     projectDelete.textContent = '-';
     description.textContent = project.description;
-    todoHeader.textContent = 'Todos';
+    todoHeader.textContent = 'To Do List';
     addTodo.textContent = '+';
     divHeader.appendChild(projectHeader);
     divHeader.appendChild(projectDelete);
