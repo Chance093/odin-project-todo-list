@@ -77,21 +77,27 @@ function displayProject(project, pfIndex, pIndex) {
     const todos = project.todos;
     todos.forEach((todo) => {
         const todoContainer = document.createElement('li');
+        const leftContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
         const checkbox = document.createElement('input');
         const task = document.createElement('p');
         const date = document.createElement('p');
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
+        leftContainer.classList.add('left-container');
+        rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
         task.textContent = todo.task;
         date.textContent = todo.date;
         editButton.textContent = '/';
         deleteButton.textContent = 'X';
-        todoContainer.appendChild(checkbox);
-        todoContainer.appendChild(task);
-        todoContainer.appendChild(date);
-        todoContainer.appendChild(editButton);
-        todoContainer.appendChild(deleteButton);
+        leftContainer.appendChild(checkbox);
+        leftContainer.appendChild(task);
+        rightContainer.appendChild(date);
+        rightContainer.appendChild(editButton);
+        rightContainer.appendChild(deleteButton);
+        todoContainer.appendChild(leftContainer);
+        todoContainer.appendChild(rightContainer);
         todoList.appendChild(todoContainer);
     })
 }

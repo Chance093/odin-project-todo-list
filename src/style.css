@@ -193,8 +193,7 @@ main>.todo-header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid white;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 main>.todo-header>h2 {
@@ -204,6 +203,29 @@ main>.todo-header>h2 {
 main>.todo-header>button {
     width: 2rem;
     height: 2rem;
+}
+
+main>.todo-list>li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 2px solid var(--tertiarycolor);
+}
+
+main>.todo-list>li>div {
+    display: flex;
+    align-items: center;
+}
+
+main>.todo-list>li>.right-container {
+    gap: 20px;
+    font-size: 1.5rem;
+}
+
+main>.todo-list>li>.left-container {
+    gap: 5px;
+    font-size: 1.5rem;
 }
 
 .modal-container {
