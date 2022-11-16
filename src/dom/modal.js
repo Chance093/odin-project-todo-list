@@ -64,7 +64,7 @@ function displayEditTodoModal(e) {
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
-    dueDate.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].date;
+    dueDate.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate;
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.setAttribute('data-td-index', tdIndex);

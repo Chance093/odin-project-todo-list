@@ -1,7 +1,10 @@
+import { format, parseISO, formatISO } from 'date-fns';
+
 function Todo(task, date) {
-    let dateCreated = new Date();
+    const dateCreated = new Date();
+    const formattedDate = format(parseISO(date), 'MM/dd/yy');
     let taskComplete = false;
-    return { task, date, dateCreated, taskComplete };
+    return { task, formattedDate, dateCreated, taskComplete };
 }
 
 function Project(name, description) {

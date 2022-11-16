@@ -103,7 +103,7 @@ function displayProject(project, pfIndex, pIndex) {
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
         task.textContent = todo.task;
-        date.textContent = todo.date;
+        date.textContent = todo.formattedDate;
         editButton.textContent = '/';
         deleteButton.textContent = 'X';
         leftContainer.appendChild(checkbox);
