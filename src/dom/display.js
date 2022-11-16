@@ -1,4 +1,4 @@
-import { displayProjectModal, displayTodoModal } from "./modal";
+import { displayEditTodoModal, displayProjectModal, displayTodoModal } from "./modal";
 import { removeProject, selectProject } from "../controllers/projects";
 import { removeTodo } from "../controllers/todos";
 
@@ -86,6 +86,10 @@ function displayProject(project, pfIndex, pIndex) {
         deleteButton.setAttribute('data-p-index', pIndex);
         deleteButton.setAttribute('data-td-index', tdIndex);
         deleteButton.addEventListener('click', removeTodo);
+        editButton.setAttribute('data-pf-index', pfIndex);
+        editButton.setAttribute('data-p-index', pIndex);
+        editButton.setAttribute('data-td-index', tdIndex);
+        editButton.addEventListener('click', displayEditTodoModal)
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');

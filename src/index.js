@@ -6,8 +6,8 @@ import { setExamples } from './example';
 
 const projectFolders = [];
 
-const todoButton = document.querySelector('.td-button');
-todoButton.addEventListener('click', addTodo);
+// const todoButton = document.querySelector('.td-button');
+// todoButton.addEventListener('click', addTodo);
 
 const projectButton = document.querySelector('.p-button');
 projectButton.addEventListener('click', addProject);
