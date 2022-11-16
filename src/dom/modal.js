@@ -1,18 +1,42 @@
 import { projectFolders } from "..";
+import { addProject, editProject } from "../controllers/projects";
 import { addTodo, editTodo } from "../controllers/todos";
 
 function displayProjectModal(e) {
     const modal = document.querySelector('.project-modal');
     const modalButton = document.querySelector('.p-button');
+    const projectName = document.querySelector('#p-name');
+    const projectDescription = document.querySelector('#p-desc');
+    projectName.value = '';
+    projectDescription.value = '';
     const index = e.target.dataset.buttonIndex;
-    modalButton.setAttribute('data-button-index', index);
+    modalButton.setAttribute('data-pf-index', index);
+    modalButton.addEventListener('click', addProject);
+    modal.classList.add('show');
+}
+
+function displayEditProjectModal(e) {
+    const modal = document.querySelector('.project-modal');
+    const modalButton = document.querySelector('.p-button');
+    const projectName = document.querySelector('#p-name');
+    const projectDescription = document.querySelector('#p-desc');
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    projectName.value = projectFolders[pfIndex].projects[pIndex].name;
+    projectDescription.value = projectFolders[pfIndex].projects[pIndex].description;
+    modalButton.setAttribute('data-pf-index', pfIndex);
+    modalButton.setAttribute('data-p-index', pIndex);
+    modalButton.addEventListener('click', editProject);
     modal.classList.add('show');
 }
 
 function removeProjectModal() {
     const modal = document.querySelector('.project-modal');
     const modalButton = document.querySelector('.p-button');
-    modalButton.removeAttribute('data-button-index');
+    modalButton.removeAttribute('data-pf-index');
+    modalButton.removeAttribute('data-p-index');
+    modalButton.removeEventListener('click', addProject);
+    modalButton.removeEventListener('click', editProject);
     modal.classList.remove('show');
 }
 
@@ -60,4 +84,4 @@ function removeTodoModal() {
 }
 
 
-export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal };
+export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal };

@@ -1,7 +1,7 @@
 import { projectFolders } from '../index';
 import { Project } from '../factory-functions';
 import { displayFolders, displayProject } from '../dom/display'
-import { removeProjectModal } from '../dom/modal';
+import { removeProjectModal, removeTodoModal } from '../dom/modal';
 
 function addProject(e) {
     const projectName = document.querySelector('#p-name');
@@ -9,11 +9,25 @@ function addProject(e) {
     const project = projectName.value;
     const description = projectDescription.value;
     const newProj = Project(project, description);
-    const index = e.target.dataset.buttonIndex;
+    const index = e.target.dataset.pfIndex;
     projectFolders[index].projects.push(newProj);
     removeProjectModal();
     displayFolders(projectFolders);
     displayProject(newProj, index, projectFolders[index].projects.length - 1);
+}
+
+function editProject(e) {
+    const projectName = document.querySelector('#p-name');
+    const projectDescription = document.querySelector('#p-desc');
+    const name = projectName.value;
+    const description = projectDescription.value;
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    projectFolders[pfIndex].projects[pIndex].name = name;
+    projectFolders[pfIndex].projects[pIndex].description = description;
+    removeProjectModal();
+    displayFolders(projectFolders);
+    displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
 }
 
 function selectProject(e) {
@@ -31,4 +45,4 @@ function removeProject(e) {
     displayProject(projectFolders[0].projects[0], 0, 0);
 }
 
-export { addProject, removeProject, selectProject };
+export { addProject, removeProject, selectProject, editProject };

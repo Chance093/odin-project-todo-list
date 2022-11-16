@@ -210,7 +210,13 @@ main>.p-header>h1 {
     color: var(--tertiarycolor);
 }
 
-main>.p-header>button {
+main>.p-header>div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+main>.p-header>div>button {
     width: 3rem;
     height: 2rem;
 }

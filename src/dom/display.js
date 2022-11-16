@@ -1,5 +1,5 @@
-import { displayEditTodoModal, displayProjectModal, displayTodoModal } from "./modal";
-import { removeProject, selectProject } from "../controllers/projects";
+import { displayEditProjectModal, displayEditTodoModal, displayProjectModal, displayTodoModal } from "./modal";
+import { editProject, removeProject, selectProject } from "../controllers/projects";
 import { removeTodo } from "../controllers/todos";
 
 function displayFolders(folders) {
@@ -41,11 +41,13 @@ function displayProject(project, pfIndex, pIndex) {
     const mainContainer = document.querySelector('main');
     mainContainer.innerHTML = '';
     const divHeader = document.createElement('div');
+    const divButtons = document.createElement('div');
     const description = document.createElement('p');
     const todoHeaderContainer = document.createElement('div');
     const todoList = document.createElement('ul');
     const projectHeader = document.createElement('h1');
     const projectDelete = document.createElement('button');
+    const projectEdit = document.createElement('button');
     const todoHeader = document.createElement('h2');
     const addTodo = document.createElement('button');
     addTodo.setAttribute('data-pf-index', pfIndex);
@@ -55,17 +57,24 @@ function displayProject(project, pfIndex, pIndex) {
     projectDelete.setAttribute('data-pf-index', pfIndex);
     projectDelete.setAttribute('data-p-index', pIndex);
     projectDelete.addEventListener('click', removeProject);
+    projectEdit.classList.add('p-edit');
+    projectEdit.setAttribute('data-pf-index', pfIndex);
+    projectEdit.setAttribute('data-p-index', pIndex);
+    projectEdit.addEventListener('click', displayEditProjectModal);
     divHeader.classList.add('p-header');
     description.classList.add('p-description');
     todoHeaderContainer.classList.add('todo-header');
     todoList.classList.add('todo-list');
     projectHeader.textContent = project.name;
-    projectDelete.textContent = '-';
+    projectDelete.textContent = 'X';
+    projectEdit.textContent = '/';
     description.textContent = project.description;
     todoHeader.textContent = 'To Do List';
     addTodo.textContent = '+';
+    divButtons.appendChild(projectEdit);
+    divButtons.appendChild(projectDelete);
     divHeader.appendChild(projectHeader);
-    divHeader.appendChild(projectDelete);
+    divHeader.appendChild(divButtons);
     todoHeaderContainer.appendChild(todoHeader);
     todoHeaderContainer.appendChild(addTodo);
     mainContainer.appendChild(divHeader);
