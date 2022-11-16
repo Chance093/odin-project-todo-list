@@ -1,7 +1,7 @@
 import { projectFolders } from '../index';
 import { Project } from '../factory-functions';
 import { displayFolders, displayProject } from '../dom/display'
-import { removeProjectModal, removeTodoModal } from '../dom/modal';
+import { removeProjectModal } from '../dom/modal';
 
 function addProject(e) {
     const projectName = document.querySelector('#p-name');
