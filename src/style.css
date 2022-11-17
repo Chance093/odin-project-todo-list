@@ -205,7 +205,8 @@ main>.p-header {
     margin-bottom: 2rem;
 }
 
-main>.p-header>h1 {
+main>.p-header>h1,
+main>h1 {
     font-size: 4rem;
     color: var(--tertiarycolor);
 }
@@ -244,7 +245,8 @@ main>.todo-header>button {
     height: 2rem;
 }
 
-main>.todo-list>li {
+main>.todo-list>li,
+main>ul>li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -252,19 +254,33 @@ main>.todo-list>li {
     border-bottom: 2px solid var(--tertiarycolor);
 }
 
-main>.todo-list>li>div {
+main>.todo-list>li>div,
+main>ul>li>div {
     display: flex;
     align-items: center;
 }
 
-main>.todo-list>li>.right-container {
+main>.todo-list>li>.right-container,
+main>ul>li>.right-container {
     gap: 20px;
     font-size: 1.5rem;
 }
 
-main>.todo-list>li>.left-container {
+main>.todo-list>li>.left-container,
+main>ul>li>.left-container {
     gap: 5px;
     font-size: 1.5rem;
+}
+
+main>h1 {
+    margin-bottom: 2rem;
+}
+
+main>h2 {
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    font-size: 2.5rem;
+    margin-top: 2rem;
 }
 
 .modal-container {
