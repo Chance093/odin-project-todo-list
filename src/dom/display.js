@@ -189,5 +189,76 @@ function displayToday() {
     mainContainer.appendChild(todayList);
 }
 
+function displayUpcoming() {
+    const arrayObject = sortDateArrays();
+    const tomorrow = arrayObject.tomorrow;
+    const thisWeek = arrayObject.thisWeek;
+    const mainContainer = document.querySelector('main');
+    mainContainer.innerHTML = '';
+    const documentHeader = document.createElement('h1');
+    const tomorrowHeader = document.createElement('h2');
+    const thisWeekHeader = document.createElement('h2');
+    documentHeader.textContent = 'Upcoming';
+    tomorrowHeader.textContent = 'Due Tomorrow';
+    thisWeekHeader.textContent = 'Due This Week';
+    const tomorrowList = document.createElement('ul');
+    const thisWeekList = document.createElement('ul');
+    tomorrow.forEach(tTodo => {
+        const todoContainer = document.createElement('li');
+        const leftContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
+        const checkbox = document.createElement('input');
+        const task = document.createElement('p');
+        const date = document.createElement('p');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        leftContainer.classList.add('left-container');
+        rightContainer.classList.add('right-container');
+        checkbox.setAttribute('type', 'checkbox');
+        task.textContent = tTodo.task;
+        date.textContent = tTodo.formattedDate;
+        editButton.textContent = '/';
+        deleteButton.textContent = 'X';
+        leftContainer.appendChild(checkbox);
+        leftContainer.appendChild(task);
+        rightContainer.appendChild(date);
+        rightContainer.appendChild(editButton);
+        rightContainer.appendChild(deleteButton);
+        todoContainer.appendChild(leftContainer);
+        todoContainer.appendChild(rightContainer);
+        tomorrowList.appendChild(todoContainer);
+    })
+    thisWeek.forEach(twTodo => {
+        const todoContainer = document.createElement('li');
+        const leftContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
+        const checkbox = document.createElement('input');
+        const task = document.createElement('p');
+        const date = document.createElement('p');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        leftContainer.classList.add('left-container');
+        rightContainer.classList.add('right-container');
+        checkbox.setAttribute('type', 'checkbox');
+        task.textContent = twTodo.task;
+        date.textContent = twTodo.formattedDate;
+        editButton.textContent = '/';
+        deleteButton.textContent = 'X';
+        leftContainer.appendChild(checkbox);
+        leftContainer.appendChild(task);
+        rightContainer.appendChild(date);
+        rightContainer.appendChild(editButton);
+        rightContainer.appendChild(deleteButton);
+        todoContainer.appendChild(leftContainer);
+        todoContainer.appendChild(rightContainer);
+        thisWeekList.appendChild(todoContainer);
+    })
+    mainContainer.appendChild(documentHeader);
+    mainContainer.appendChild(tomorrowHeader);
+    mainContainer.appendChild(tomorrowList);
+    mainContainer.appendChild(thisWeekHeader);
+    mainContainer.appendChild(thisWeekList);
+}
 
-export { displayFolders, displayProject, displayToday };
+
+export { displayFolders, displayProject, displayToday, displayUpcoming };

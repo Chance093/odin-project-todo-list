@@ -2,7 +2,7 @@ import './style.css';
 import { addProjectFolder } from './controllers/project-folders';
 import { setExamples } from './example';
 import { removeProjectModal, removeTodoModal } from './dom/modal';
-import { displayToday } from './dom/display';
+import { displayToday, displayUpcoming } from './dom/display';
 
 const projectFolders = [];
 
@@ -17,6 +17,8 @@ ctdButton.addEventListener('click', removeTodoModal);
 
 const todayLink = document.querySelector('.today-link');
 todayLink.addEventListener('click', displayToday);
+const upcomingLink = document.querySelector('.upcoming-link');
+upcomingLink.addEventListener('click', displayUpcoming);
 
 setExamples();
 
