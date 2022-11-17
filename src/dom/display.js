@@ -1,6 +1,7 @@
 import { displayEditProjectModal, displayEditTodoModal, displayProjectModal, displayTodoModal } from "./modal";
-import { editProject, removeProject, selectProject } from "../controllers/projects";
+import { removeProject, selectProject } from "../controllers/projects";
 import { removeTodo } from "../controllers/todos";
+import { sortDateArrays } from "../controllers/sort-dates";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -117,5 +118,76 @@ function displayProject(project, pfIndex, pIndex) {
     })
 }
 
+function displayToday() {
+    const arrayObject = sortDateArrays();
+    const today = arrayObject.today;
+    const pastDue = arrayObject.pastDue;
+    const mainContainer = document.querySelector('main');
+    mainContainer.innerHTML = '';
+    const documentHeader = document.createElement('h1');
+    const pastDueHeader = document.createElement('h2');
+    const todayHeader = document.createElement('h2');
+    documentHeader.textContent = 'Today';
+    pastDueHeader.textContent = 'Past Due';
+    todayHeader.textContent = 'Due Today';
+    const pastDueList = document.createElement('ul');
+    const todayList = document.createElement('ul');
+    pastDue.forEach(pdTodo => {
+        const todoContainer = document.createElement('li');
+        const leftContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
+        const checkbox = document.createElement('input');
+        const task = document.createElement('p');
+        const date = document.createElement('p');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        leftContainer.classList.add('left-container');
+        rightContainer.classList.add('right-container');
+        checkbox.setAttribute('type', 'checkbox');
+        task.textContent = pdTodo.task;
+        date.textContent = pdTodo.formattedDate;
+        editButton.textContent = '/';
+        deleteButton.textContent = 'X';
+        leftContainer.appendChild(checkbox);
+        leftContainer.appendChild(task);
+        rightContainer.appendChild(date);
+        rightContainer.appendChild(editButton);
+        rightContainer.appendChild(deleteButton);
+        todoContainer.appendChild(leftContainer);
+        todoContainer.appendChild(rightContainer);
+        pastDueList.appendChild(todoContainer);
+    })
+    today.forEach(tTodo => {
+        const todoContainer = document.createElement('li');
+        const leftContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
+        const checkbox = document.createElement('input');
+        const task = document.createElement('p');
+        const date = document.createElement('p');
+        const editButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        leftContainer.classList.add('left-container');
+        rightContainer.classList.add('right-container');
+        checkbox.setAttribute('type', 'checkbox');
+        task.textContent = tTodo.task;
+        date.textContent = tTodo.formattedDate;
+        editButton.textContent = '/';
+        deleteButton.textContent = 'X';
+        leftContainer.appendChild(checkbox);
+        leftContainer.appendChild(task);
+        rightContainer.appendChild(date);
+        rightContainer.appendChild(editButton);
+        rightContainer.appendChild(deleteButton);
+        todoContainer.appendChild(leftContainer);
+        todoContainer.appendChild(rightContainer);
+        todayList.appendChild(todoContainer);
+    })
+    mainContainer.appendChild(documentHeader);
+    mainContainer.appendChild(pastDueHeader);
+    mainContainer.appendChild(pastDueList);
+    mainContainer.appendChild(todayHeader);
+    mainContainer.appendChild(todayList);
+}
 
-export { displayFolders, displayProject };
+
+export { displayFolders, displayProject, displayToday };

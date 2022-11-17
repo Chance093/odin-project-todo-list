@@ -1,4 +1,4 @@
-import { format, parseISO, formatISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 function Todo(task, date) {
     const dateCreated = new Date();

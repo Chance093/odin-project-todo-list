@@ -7,13 +7,14 @@ function addTodo(e) {
     const taskName = document.querySelector('#task-name');
     const dueDate = document.querySelector('#due-date');
     const task = taskName.value;
-    const date = dueDate.value
+    const date = dueDate.value;
     const newTodo = Todo(task, date);
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     projectFolders[pfIndex].projects[pIndex].todos.push(newTodo);
     removeTodoModal();
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+    console.log(projectFolders);
 }
 
 function editTodo(e) {
