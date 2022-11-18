@@ -39,4 +39,17 @@ function removeTodo(e) {
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex)
 }
 
-export { addTodo, editTodo, removeTodo };
+function checkTodo(e) {
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    if (this.checked) {
+        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
+        displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+    } else {
+        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = false;
+        displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+    }
+}
+
+export { addTodo, editTodo, removeTodo, checkTodo };

@@ -1,6 +1,6 @@
 import { displayEditProjectModal, displayEditTodoModal, displayProjectModal, displayTodoModal } from "./modal";
 import { removeProject, selectProject } from "../controllers/projects";
-import { removeTodo } from "../controllers/todos";
+import { checkTodo, removeTodo } from "../controllers/todos";
 import { sortDateArrays } from "../controllers/sort-dates";
 
 function displayFolders(folders) {
@@ -34,9 +34,6 @@ function displayFolders(folders) {
         })
     })
 }
-
-
-
 
 function displayProject(project, pfIndex, pIndex) {
     const mainContainer = document.querySelector('main');
@@ -83,6 +80,15 @@ function displayProject(project, pfIndex, pIndex) {
     mainContainer.appendChild(todoHeaderContainer);
     mainContainer.appendChild(todoList);
     const todos = project.todos;
+    displayTodos(todos, pfIndex, pIndex);
+}
+
+function displayTodos(todos, pfIndex, pIndex) {
+    todos.sort((a, b) => {
+        if (a.taskComplete && !b.taskComplete) return 1;
+        else if (!a.taskComplete && b.taskComplete) return -1;
+        else return 0;
+    })
     todos.forEach((todo, tdIndex) => {
         const todoContainer = document.createElement('li');
         const leftContainer = document.createElement('div');
@@ -103,6 +109,11 @@ function displayProject(project, pfIndex, pIndex) {
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('data-pf-index', pfIndex);
+        checkbox.setAttribute('data-p-index', pIndex);
+        checkbox.setAttribute('data-td-index', tdIndex);
+        checkbox.addEventListener('change', checkTodo);
+        if (todo.taskComplete) checkbox.checked = true;
         task.textContent = todo.task;
         date.textContent = todo.formattedDate;
         editButton.textContent = '/';
