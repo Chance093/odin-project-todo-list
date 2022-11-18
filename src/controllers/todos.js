@@ -2,6 +2,7 @@ import { projectFolders } from '../index';
 import { Todo } from '../factory-functions';
 import { displayProject } from '../dom/projects';
 import { removeTodoModal } from '../dom/modal';
+import { displayToday } from '../dom/links';
 
 function addTodo(e) {
     const taskName = document.querySelector('#task-name');
@@ -44,8 +45,13 @@ function checkTodo(e) {
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     if (this.checked) {
-        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
-        displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+        if (projectFolders[pfIndex].projects[pIndex].todos[tdIndex].tdIndex || projectFolders[pfIndex].projects[pIndex].todos[tdIndex].tdIndex === 0) {
+            projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
+            displayToday();
+        } else {
+            projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
+            displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+        }
     } else {
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = false;
         displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);

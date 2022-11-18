@@ -17,6 +17,7 @@ function displayToday() {
     const pastDueList = document.createElement('ul');
     const todayList = document.createElement('ul');
     pastDue.forEach(pdTodo => {
+        if (pdTodo.taskComplete) return;
         const todoContainer = document.createElement('li');
         const leftContainer = document.createElement('div');
         const rightContainer = document.createElement('div');
@@ -58,6 +59,7 @@ function displayToday() {
         pastDueList.appendChild(todoContainer);
     })
     today.forEach(tTodo => {
+        if (tTodo.taskComplete) return;
         const todoContainer = document.createElement('li');
         const leftContainer = document.createElement('div');
         const rightContainer = document.createElement('div');

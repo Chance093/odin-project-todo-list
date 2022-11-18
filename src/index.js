@@ -19,6 +19,7 @@ const todayLink = document.querySelector('.today-link');
 todayLink.addEventListener('click', displayToday);
 const upcomingLink = document.querySelector('.upcoming-link');
 upcomingLink.addEventListener('click', displayUpcoming);
+console.log(projectFolders);
 
 setExamples();
 
