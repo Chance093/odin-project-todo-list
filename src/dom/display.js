@@ -80,10 +80,10 @@ function displayProject(project, pfIndex, pIndex) {
     mainContainer.appendChild(todoHeaderContainer);
     mainContainer.appendChild(todoList);
     const todos = project.todos;
-    displayTodos(todos, pfIndex, pIndex);
+    displayTodos(todos, todoList, pfIndex, pIndex);
 }
 
-function displayTodos(todos, pfIndex, pIndex) {
+function displayTodos(todos, todoList, pfIndex, pIndex) {
     todos.sort((a, b) => {
         if (a.taskComplete && !b.taskComplete) return 1;
         else if (!a.taskComplete && b.taskComplete) return -1;
