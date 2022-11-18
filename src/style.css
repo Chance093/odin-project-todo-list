@@ -272,6 +272,10 @@ main>ul>li>.left-container {
     font-size: 1.5rem;
 }
 
+main>.todo-list>li>.left-container>input:checked+label {
+    text-decoration: line-through;
+}
+
 main>h1 {
     margin-bottom: 2rem;
 }

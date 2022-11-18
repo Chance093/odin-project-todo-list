@@ -94,7 +94,7 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         const leftContainer = document.createElement('div');
         const rightContainer = document.createElement('div');
         const checkbox = document.createElement('input');
-        const task = document.createElement('p');
+        const task = document.createElement('label');
         const date = document.createElement('p');
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
@@ -109,10 +109,12 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('id', `todo${tdIndex}`);
         checkbox.setAttribute('data-pf-index', pfIndex);
         checkbox.setAttribute('data-p-index', pIndex);
         checkbox.setAttribute('data-td-index', tdIndex);
         checkbox.addEventListener('change', checkTodo);
+        task.setAttribute('for', `todo${tdIndex}`);
         if (todo.taskComplete) checkbox.checked = true;
         task.textContent = todo.task;
         date.textContent = todo.formattedDate;
