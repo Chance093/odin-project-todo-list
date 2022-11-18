@@ -14,7 +14,7 @@ function getAllTodos() {
     return allTodos;
 }
 
-function sortTodosByDate() {
+function sortTodos() {
     const allTodos = getAllTodos();
     allTodos.sort((a, b) => {
         if (a.formattedDate < b.formattedDate) return -1;
@@ -24,8 +24,8 @@ function sortTodosByDate() {
     return allTodos;
 }
 
-function sortDateArrays() {
-    const sortedTodos = sortTodosByDate();
+function sortTodosByDate() {
+    const sortedTodos = sortTodos();
     const pastDue = [];
     const today = [];
     const tomorrow = [];
@@ -47,4 +47,13 @@ function sortDateArrays() {
     return { pastDue, today, tomorrow, thisWeek };
 }
 
-export { sortDateArrays };
+function sortTodosByChecked(todos) {
+    todos.sort((a, b) => {
+        if (a.taskComplete && !b.taskComplete) return 1;
+        else if (!a.taskComplete && b.taskComplete) return -1;
+        else return 0;
+    })
+    return todos;
+}
+
+export { sortTodosByDate, sortTodosByChecked };

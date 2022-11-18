@@ -2,6 +2,7 @@ import { displayEditProjectModal, displayEditTodoModal, displayProjectModal, dis
 import { removeProject, selectProject } from "../controllers/projects";
 import { checkTodo, removeTodo } from "../controllers/todos";
 import { projectFolders } from "..";
+import { sortTodosByChecked } from "../controllers/sorter";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -84,12 +85,8 @@ function displayProject(project, pfIndex, pIndex) {
 }
 
 function displayTodos(todos, todoList, pfIndex, pIndex) {
-    todos.sort((a, b) => {
-        if (a.taskComplete && !b.taskComplete) return 1;
-        else if (!a.taskComplete && b.taskComplete) return -1;
-        else return 0;
-    })
-    todos.forEach((todo, tdIndex) => {
+    const sortedTodos = sortTodosByChecked(todos);
+    sortedTodos.forEach((todo, tdIndex) => {
         const todoContainer = document.createElement('li');
         const leftContainer = document.createElement('div');
         const rightContainer = document.createElement('div');

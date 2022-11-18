@@ -1,9 +1,9 @@
-import { sortDateArrays } from "../controllers/sort-dates";
+import { sortTodosByDate } from "../controllers/sorter";
 import { checkTodo, removeTodo } from "../controllers/todos";
 import { displayEditTodoModal } from "../dom/modal";
 
 function displayToday() {
-    const arrayObject = sortDateArrays();
+    const arrayObject = sortTodosByDate();
     const today = arrayObject.today;
     const pastDue = arrayObject.pastDue;
     const mainContainer = document.querySelector('main');
@@ -90,7 +90,7 @@ function displayToday() {
 }
 
 function displayUpcoming() {
-    const arrayObject = sortDateArrays();
+    const arrayObject = sortTodosByDate();
     const tomorrow = arrayObject.tomorrow;
     const thisWeek = arrayObject.thisWeek;
     const mainContainer = document.querySelector('main');
