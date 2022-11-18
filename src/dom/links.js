@@ -1,11 +1,10 @@
+import { projectFolders } from "../index";
 import { sortTodosByDate } from "../controllers/sorter";
 import { checkTodo, removeTodo } from "../controllers/todos";
-import { displayEditLinksTodoModal } from "../dom/modal";
+import { displayEditTodoModal } from "../dom/modal";
+import { format } from "date-fns";
 
 function displayToday() {
-    const arrayObject = sortTodosByDate();
-    const today = arrayObject.today;
-    const pastDue = arrayObject.pastDue;
     const mainContainer = document.querySelector('main');
     mainContainer.innerHTML = '';
     const documentHeader = document.createElement('h1');
@@ -16,73 +15,53 @@ function displayToday() {
     todayHeader.textContent = 'Due Today';
     const pastDueList = document.createElement('ul');
     const todayList = document.createElement('ul');
-    pastDue.forEach(pdTodo => {
-        if (pdTodo.taskComplete) return;
-        const todoContainer = document.createElement('li');
-        const leftContainer = document.createElement('div');
-        const rightContainer = document.createElement('div');
-        const checkbox = document.createElement('input');
-        const task = document.createElement('p');
-        const date = document.createElement('p');
-        const editButton = document.createElement('button');
-        const deleteButton = document.createElement('button');
-        const pfIndex = pdTodo.pfIndex;
-        const pIndex = pdTodo.pIndex;
-        const tdIndex = pdTodo.tdIndex;
-        leftContainer.classList.add('left-container');
-        rightContainer.classList.add('right-container');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('id', `todo${tdIndex}`);
-        checkbox.setAttribute('data-pf-index', pfIndex);
-        checkbox.setAttribute('data-p-index', pIndex);
-        checkbox.setAttribute('data-td-index', tdIndex);
-        checkbox.addEventListener('change', checkTodo);
-        deleteButton.setAttribute('data-pf-index', pfIndex);
-        deleteButton.setAttribute('data-p-index', pIndex);
-        deleteButton.setAttribute('data-td-index', tdIndex);
-        deleteButton.addEventListener('click', removeTodo);
-        editButton.setAttribute('data-pf-index', pfIndex);
-        editButton.setAttribute('data-p-index', pIndex);
-        editButton.setAttribute('data-td-index', tdIndex);
-        editButton.addEventListener('click', displayEditLinksTodoModal);
-        task.textContent = pdTodo.task;
-        date.textContent = pdTodo.formattedDate;
-        editButton.textContent = '/';
-        deleteButton.textContent = 'X';
-        leftContainer.appendChild(checkbox);
-        leftContainer.appendChild(task);
-        rightContainer.appendChild(date);
-        rightContainer.appendChild(editButton);
-        rightContainer.appendChild(deleteButton);
-        todoContainer.appendChild(leftContainer);
-        todoContainer.appendChild(rightContainer);
-        pastDueList.appendChild(todoContainer);
-    })
-    today.forEach(tTodo => {
-        if (tTodo.taskComplete) return;
-        const todoContainer = document.createElement('li');
-        const leftContainer = document.createElement('div');
-        const rightContainer = document.createElement('div');
-        const checkbox = document.createElement('input');
-        const task = document.createElement('p');
-        const date = document.createElement('p');
-        const editButton = document.createElement('button');
-        const deleteButton = document.createElement('button');
-        leftContainer.classList.add('left-container');
-        rightContainer.classList.add('right-container');
-        checkbox.setAttribute('type', 'checkbox');
-        task.textContent = tTodo.task;
-        date.textContent = tTodo.formattedDate;
-        editButton.textContent = '/';
-        deleteButton.textContent = 'X';
-        leftContainer.appendChild(checkbox);
-        leftContainer.appendChild(task);
-        rightContainer.appendChild(date);
-        rightContainer.appendChild(editButton);
-        rightContainer.appendChild(deleteButton);
-        todoContainer.appendChild(leftContainer);
-        todoContainer.appendChild(rightContainer);
-        todayList.appendChild(todoContainer);
+    projectFolders.forEach((pf, pfIndex) => {
+        pf.projects.forEach((p, pIndex) => {
+            p.todos.forEach((td, tdIndex) => {
+                const currentDate = format(new Date(), 'MM/dd/yy');
+                if (td.taskComplete) return;
+                const todoContainer = document.createElement('li');
+                const leftContainer = document.createElement('div');
+                const rightContainer = document.createElement('div');
+                const checkbox = document.createElement('input');
+                const task = document.createElement('p');
+                const date = document.createElement('p');
+                const editButton = document.createElement('button');
+                const deleteButton = document.createElement('button');
+                leftContainer.classList.add('left-container');
+                rightContainer.classList.add('right-container');
+                checkbox.setAttribute('type', 'checkbox');
+                checkbox.setAttribute('id', `todo${tdIndex}`);
+                checkbox.setAttribute('data-pf-index', pfIndex);
+                checkbox.setAttribute('data-p-index', pIndex);
+                checkbox.setAttribute('data-td-index', tdIndex);
+                checkbox.addEventListener('change', checkTodo);
+                deleteButton.setAttribute('data-pf-index', pfIndex);
+                deleteButton.setAttribute('data-p-index', pIndex);
+                deleteButton.setAttribute('data-td-index', tdIndex);
+                deleteButton.addEventListener('click', removeTodo);
+                editButton.setAttribute('data-pf-index', pfIndex);
+                editButton.setAttribute('data-p-index', pIndex);
+                editButton.setAttribute('data-td-index', tdIndex);
+                editButton.addEventListener('click', displayEditTodoModal);
+                task.textContent = td.task;
+                date.textContent = td.formattedDate;
+                editButton.textContent = '/';
+                deleteButton.textContent = 'X';
+                leftContainer.appendChild(checkbox);
+                leftContainer.appendChild(task);
+                rightContainer.appendChild(date);
+                rightContainer.appendChild(editButton);
+                rightContainer.appendChild(deleteButton);
+                todoContainer.appendChild(leftContainer);
+                todoContainer.appendChild(rightContainer);
+                if (td.formattedDate < currentDate) {
+                    pastDueList.appendChild(todoContainer);
+                } else {
+                    todayList.appendChild(todoContainer);
+                }
+            })
+        })
     })
     mainContainer.appendChild(documentHeader);
     mainContainer.appendChild(pastDueHeader);
@@ -114,9 +93,25 @@ function displayUpcoming() {
         const date = document.createElement('p');
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
+        const pfIndex = tTodo.pfIndex;
+        const pIndex = tTodo.pIndex;
+        const tdIndex = tTodo.tdIndex;
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('id', `todo${tdIndex}`);
+        checkbox.setAttribute('data-pf-index', pfIndex);
+        checkbox.setAttribute('data-p-index', pIndex);
+        checkbox.setAttribute('data-td-index', tdIndex);
+        checkbox.addEventListener('change', checkTodo);
+        deleteButton.setAttribute('data-pf-index', pfIndex);
+        deleteButton.setAttribute('data-p-index', pIndex);
+        deleteButton.setAttribute('data-td-index', tdIndex);
+        deleteButton.addEventListener('click', removeTodo);
+        editButton.setAttribute('data-pf-index', pfIndex);
+        editButton.setAttribute('data-p-index', pIndex);
+        editButton.setAttribute('data-td-index', tdIndex);
+        editButton.addEventListener('click', displayEditLinksTodoModal);
         task.textContent = tTodo.task;
         date.textContent = tTodo.formattedDate;
         editButton.textContent = '/';
@@ -139,9 +134,25 @@ function displayUpcoming() {
         const date = document.createElement('p');
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
+        const pfIndex = twTodo.pfIndex;
+        const pIndex = twTodo.pIndex;
+        const tdIndex = twTodo.tdIndex;
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('id', `todo${tdIndex}`);
+        checkbox.setAttribute('data-pf-index', pfIndex);
+        checkbox.setAttribute('data-p-index', pIndex);
+        checkbox.setAttribute('data-td-index', tdIndex);
+        checkbox.addEventListener('change', checkTodo);
+        deleteButton.setAttribute('data-pf-index', pfIndex);
+        deleteButton.setAttribute('data-p-index', pIndex);
+        deleteButton.setAttribute('data-td-index', tdIndex);
+        deleteButton.addEventListener('click', removeTodo);
+        editButton.setAttribute('data-pf-index', pfIndex);
+        editButton.setAttribute('data-p-index', pIndex);
+        editButton.setAttribute('data-td-index', tdIndex);
+        editButton.addEventListener('click', displayEditLinksTodoModal);
         task.textContent = twTodo.task;
         date.textContent = twTodo.formattedDate;
         editButton.textContent = '/';
