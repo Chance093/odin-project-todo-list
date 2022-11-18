@@ -2,7 +2,7 @@ import { projectFolders } from "../index";
 import { sortTodosByDate } from "../controllers/sorter";
 import { checkTodo, removeTodo } from "../controllers/todos";
 import { displayEditTodoModal } from "../dom/modal";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 function displayToday() {
     const mainContainer = document.querySelector('main');
@@ -57,7 +57,7 @@ function displayToday() {
                 todoContainer.appendChild(rightContainer);
                 if (td.formattedDate < currentDate) {
                     pastDueList.appendChild(todoContainer);
-                } else {
+                } else if (td.formattedDate === currentDate) {
                     todayList.appendChild(todoContainer);
                 }
             })
@@ -71,9 +71,6 @@ function displayToday() {
 }
 
 function displayUpcoming() {
-    const arrayObject = sortTodosByDate();
-    const tomorrow = arrayObject.tomorrow;
-    const thisWeek = arrayObject.thisWeek;
     const mainContainer = document.querySelector('main');
     mainContainer.innerHTML = '';
     const documentHeader = document.createElement('h1');
@@ -84,87 +81,54 @@ function displayUpcoming() {
     thisWeekHeader.textContent = 'Due This Week';
     const tomorrowList = document.createElement('ul');
     const thisWeekList = document.createElement('ul');
-    tomorrow.forEach(tTodo => {
-        const todoContainer = document.createElement('li');
-        const leftContainer = document.createElement('div');
-        const rightContainer = document.createElement('div');
-        const checkbox = document.createElement('input');
-        const task = document.createElement('p');
-        const date = document.createElement('p');
-        const editButton = document.createElement('button');
-        const deleteButton = document.createElement('button');
-        const pfIndex = tTodo.pfIndex;
-        const pIndex = tTodo.pIndex;
-        const tdIndex = tTodo.tdIndex;
-        leftContainer.classList.add('left-container');
-        rightContainer.classList.add('right-container');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('id', `todo${tdIndex}`);
-        checkbox.setAttribute('data-pf-index', pfIndex);
-        checkbox.setAttribute('data-p-index', pIndex);
-        checkbox.setAttribute('data-td-index', tdIndex);
-        checkbox.addEventListener('change', checkTodo);
-        deleteButton.setAttribute('data-pf-index', pfIndex);
-        deleteButton.setAttribute('data-p-index', pIndex);
-        deleteButton.setAttribute('data-td-index', tdIndex);
-        deleteButton.addEventListener('click', removeTodo);
-        editButton.setAttribute('data-pf-index', pfIndex);
-        editButton.setAttribute('data-p-index', pIndex);
-        editButton.setAttribute('data-td-index', tdIndex);
-        editButton.addEventListener('click', displayEditLinksTodoModal);
-        task.textContent = tTodo.task;
-        date.textContent = tTodo.formattedDate;
-        editButton.textContent = '/';
-        deleteButton.textContent = 'X';
-        leftContainer.appendChild(checkbox);
-        leftContainer.appendChild(task);
-        rightContainer.appendChild(date);
-        rightContainer.appendChild(editButton);
-        rightContainer.appendChild(deleteButton);
-        todoContainer.appendChild(leftContainer);
-        todoContainer.appendChild(rightContainer);
-        tomorrowList.appendChild(todoContainer);
-    })
-    thisWeek.forEach(twTodo => {
-        const todoContainer = document.createElement('li');
-        const leftContainer = document.createElement('div');
-        const rightContainer = document.createElement('div');
-        const checkbox = document.createElement('input');
-        const task = document.createElement('p');
-        const date = document.createElement('p');
-        const editButton = document.createElement('button');
-        const deleteButton = document.createElement('button');
-        const pfIndex = twTodo.pfIndex;
-        const pIndex = twTodo.pIndex;
-        const tdIndex = twTodo.tdIndex;
-        leftContainer.classList.add('left-container');
-        rightContainer.classList.add('right-container');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('id', `todo${tdIndex}`);
-        checkbox.setAttribute('data-pf-index', pfIndex);
-        checkbox.setAttribute('data-p-index', pIndex);
-        checkbox.setAttribute('data-td-index', tdIndex);
-        checkbox.addEventListener('change', checkTodo);
-        deleteButton.setAttribute('data-pf-index', pfIndex);
-        deleteButton.setAttribute('data-p-index', pIndex);
-        deleteButton.setAttribute('data-td-index', tdIndex);
-        deleteButton.addEventListener('click', removeTodo);
-        editButton.setAttribute('data-pf-index', pfIndex);
-        editButton.setAttribute('data-p-index', pIndex);
-        editButton.setAttribute('data-td-index', tdIndex);
-        editButton.addEventListener('click', displayEditLinksTodoModal);
-        task.textContent = twTodo.task;
-        date.textContent = twTodo.formattedDate;
-        editButton.textContent = '/';
-        deleteButton.textContent = 'X';
-        leftContainer.appendChild(checkbox);
-        leftContainer.appendChild(task);
-        rightContainer.appendChild(date);
-        rightContainer.appendChild(editButton);
-        rightContainer.appendChild(deleteButton);
-        todoContainer.appendChild(leftContainer);
-        todoContainer.appendChild(rightContainer);
-        thisWeekList.appendChild(todoContainer);
+    projectFolders.forEach((pf, pfIndex) => {
+        pf.projects.forEach((p, pIndex) => {
+            p.todos.forEach((td, tdIndex) => {
+                const tomorrowsDate = format(addDays(new Date(), 1), 'MM/dd/yy');
+                const nextWeekDate = format(addDays(new Date(), 7), 'MM/dd/yy');
+                if (td.taskComplete) return;
+                const todoContainer = document.createElement('li');
+                const leftContainer = document.createElement('div');
+                const rightContainer = document.createElement('div');
+                const checkbox = document.createElement('input');
+                const task = document.createElement('p');
+                const date = document.createElement('p');
+                const editButton = document.createElement('button');
+                const deleteButton = document.createElement('button');
+                leftContainer.classList.add('left-container');
+                rightContainer.classList.add('right-container');
+                checkbox.setAttribute('type', 'checkbox');
+                checkbox.setAttribute('id', `todo${tdIndex}`);
+                checkbox.setAttribute('data-pf-index', pfIndex);
+                checkbox.setAttribute('data-p-index', pIndex);
+                checkbox.setAttribute('data-td-index', tdIndex);
+                checkbox.addEventListener('change', checkTodo);
+                deleteButton.setAttribute('data-pf-index', pfIndex);
+                deleteButton.setAttribute('data-p-index', pIndex);
+                deleteButton.setAttribute('data-td-index', tdIndex);
+                deleteButton.addEventListener('click', removeTodo);
+                editButton.setAttribute('data-pf-index', pfIndex);
+                editButton.setAttribute('data-p-index', pIndex);
+                editButton.setAttribute('data-td-index', tdIndex);
+                editButton.addEventListener('click', displayEditTodoModal);
+                task.textContent = td.task;
+                date.textContent = td.formattedDate;
+                editButton.textContent = '/';
+                deleteButton.textContent = 'X';
+                leftContainer.appendChild(checkbox);
+                leftContainer.appendChild(task);
+                rightContainer.appendChild(date);
+                rightContainer.appendChild(editButton);
+                rightContainer.appendChild(deleteButton);
+                todoContainer.appendChild(leftContainer);
+                todoContainer.appendChild(rightContainer);
+                if (td.formattedDate === tomorrowsDate) {
+                    tomorrowList.appendChild(todoContainer);
+                } else if (td.formattedDate > tomorrowsDate && td.formattedDate < nextWeekDate) {
+                    thisWeekList.appendChild(todoContainer);
+                }
+            })
+        })
     })
     mainContainer.appendChild(documentHeader);
     mainContainer.appendChild(tomorrowHeader);
