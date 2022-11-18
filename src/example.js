@@ -1,6 +1,6 @@
 import { projectFolders } from "./index";
 import { Todo, Project, ProjectFolder } from "./factory-functions";
-import { displayFolders, displayProject } from "./dom/display";
+import { displayFolders, displayProject } from "./dom/projects";
 
 
 function setExamples() {

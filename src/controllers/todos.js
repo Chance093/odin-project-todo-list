@@ -1,6 +1,6 @@
 import { projectFolders } from '../index';
 import { Todo } from '../factory-functions';
-import { displayProject } from '../dom/display';
+import { displayProject } from '../dom/projects';
 import { removeTodoModal } from '../dom/modal';
 
 function addTodo(e) {

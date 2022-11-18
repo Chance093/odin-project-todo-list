@@ -2,7 +2,7 @@ import './style.css';
 import { addProjectFolder } from './controllers/project-folders';
 import { setExamples } from './example';
 import { removeProjectModal, removeTodoModal } from './dom/modal';
-import { displayToday, displayUpcoming } from './dom/display';
+import { displayToday, displayUpcoming } from './dom/links';
 
 const projectFolders = [];
 
