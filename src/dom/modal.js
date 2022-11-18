@@ -1,6 +1,7 @@
 import { projectFolders } from "..";
 import { addProject, editProject } from "../controllers/projects";
 import { addTodo, editTodo } from "../controllers/todos";
+import { format, parse } from "date-fns";
 
 function displayProjectModal(e) {
     const modal = document.querySelector('.project-modal');
@@ -64,7 +65,7 @@ function displayEditTodoModal(e) {
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
-    dueDate.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate;
+    dueDate.value = format(parse(projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate, 'MM/dd/yy', new Date()), 'yyyy-MM-dd');
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.setAttribute('data-td-index', tdIndex);
