@@ -1,6 +1,6 @@
 import { projectFolders } from "..";
 import { addProject, editProject } from "../controllers/projects";
-import { addTodo, editTodo } from "../controllers/todos";
+import { addTodo, editTodo, editLinksTodo } from "../controllers/todos";
 import { format, parse } from "date-fns";
 
 function displayProjectModal(e) {
@@ -73,6 +73,23 @@ function displayEditTodoModal(e) {
     modal.classList.add('show');
 }
 
+function displayEditLinksTodoModal(e) {
+    const modal = document.querySelector('.todo-modal');
+    const modalButton = document.querySelector('.td-button');
+    const taskName = document.querySelector('#task-name');
+    const dueDate = document.querySelector('#due-date');
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
+    dueDate.value = format(parse(projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate, 'MM/dd/yy', new Date()), 'yyyy-MM-dd');
+    modalButton.setAttribute('data-pf-index', pfIndex);
+    modalButton.setAttribute('data-p-index', pIndex);
+    modalButton.setAttribute('data-td-index', tdIndex);
+    modalButton.addEventListener('click', editLinksTodo);
+    modal.classList.add('show');
+}
+
 function removeTodoModal() {
     const modal = document.querySelector('.todo-modal');
     const modalButton = document.querySelector('.td-button');
@@ -85,4 +102,4 @@ function removeTodoModal() {
 }
 
 
-export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal };
+export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal, displayEditLinksTodoModal };

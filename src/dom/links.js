@@ -1,6 +1,6 @@
 import { sortTodosByDate } from "../controllers/sorter";
 import { checkTodo, removeTodo } from "../controllers/todos";
-import { displayEditTodoModal } from "../dom/modal";
+import { displayEditLinksTodoModal } from "../dom/modal";
 
 function displayToday() {
     const arrayObject = sortTodosByDate();
@@ -44,7 +44,7 @@ function displayToday() {
         editButton.setAttribute('data-pf-index', pfIndex);
         editButton.setAttribute('data-p-index', pIndex);
         editButton.setAttribute('data-td-index', tdIndex);
-        editButton.addEventListener('click', displayEditTodoModal);
+        editButton.addEventListener('click', displayEditLinksTodoModal);
         task.textContent = pdTodo.task;
         date.textContent = pdTodo.formattedDate;
         editButton.textContent = '/';
