@@ -1,6 +1,5 @@
 import { projectFolders } from "../index";
-import { sortTodosByDate } from "../controllers/sorter";
-import { checkTodo, removeTodo } from "../controllers/todos";
+import { checkListTodo, removeTodo } from "../controllers/todos";
 import { displayEditTodoModal } from "../dom/modal";
 import { format, addDays } from "date-fns";
 
@@ -35,7 +34,7 @@ function displayToday() {
                 checkbox.setAttribute('data-pf-index', pfIndex);
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
-                checkbox.addEventListener('change', checkTodo);
+                checkbox.addEventListener('change', checkListTodo);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
