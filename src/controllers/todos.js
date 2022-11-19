@@ -32,6 +32,20 @@ function editTodo(e) {
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
 }
 
+function editListTodo(e) {
+    const taskName = document.querySelector('#task-name');
+    const dueDate = document.querySelector('#due-date');
+    const task = taskName.value;
+    const date = dueDate.value;
+    const editedTodo = Todo(task, date);
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1, editedTodo);
+    removeTodoModal();
+    displayToday();
+}
+
 function removeTodo(e) {
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
@@ -69,4 +83,4 @@ function checkListTodo(e) {
     displayToday();
 }
 
-export { addTodo, editTodo, removeTodo, removeListTodo, checkTodo, checkListTodo };
+export { addTodo, editTodo, editListTodo, removeTodo, removeListTodo, checkTodo, checkListTodo };

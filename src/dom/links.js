@@ -1,6 +1,6 @@
 import { projectFolders } from "../index";
 import { checkListTodo, removeListTodo } from "../controllers/todos";
-import { displayEditTodoModal } from "../dom/modal";
+import { displayEditListTodoModal } from "../dom/modal";
 import { format, addDays } from "date-fns";
 
 function displayToday() {
@@ -42,7 +42,7 @@ function displayToday() {
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
-                editButton.addEventListener('click', displayEditTodoModal);
+                editButton.addEventListener('click', displayEditListTodoModal);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
                 editButton.textContent = '/';
@@ -109,7 +109,7 @@ function displayUpcoming() {
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
-                editButton.addEventListener('click', displayEditTodoModal);
+                editButton.addEventListener('click', displayEditListTodoModal);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
                 editButton.textContent = '/';

@@ -1,6 +1,6 @@
 import { projectFolders } from "..";
 import { addProject, editProject } from "../controllers/projects";
-import { addTodo, editTodo, editLinksTodo } from "../controllers/todos";
+import { addTodo, editTodo, editListTodo } from "../controllers/todos";
 import { format, parse } from "date-fns";
 
 function displayProjectModal(e) {
@@ -73,7 +73,7 @@ function displayEditTodoModal(e) {
     modal.classList.add('show');
 }
 
-function displayEditLinksTodoModal(e) {
+function displayEditListTodoModal(e) {
     const modal = document.querySelector('.todo-modal');
     const modalButton = document.querySelector('.td-button');
     const taskName = document.querySelector('#task-name');
@@ -86,7 +86,7 @@ function displayEditLinksTodoModal(e) {
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.setAttribute('data-td-index', tdIndex);
-    modalButton.addEventListener('click', editLinksTodo);
+    modalButton.addEventListener('click', editListTodo);
     modal.classList.add('show');
 }
 
@@ -102,4 +102,4 @@ function removeTodoModal() {
 }
 
 
-export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal, displayEditLinksTodoModal };
+export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal, displayEditListTodoModal };
