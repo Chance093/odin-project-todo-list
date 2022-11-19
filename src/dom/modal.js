@@ -63,11 +63,14 @@ function displayEditTodoModal(e) {
     const modalButton = document.querySelector('.td-button');
     const taskName = document.querySelector('#task-name');
     const dueDate = document.querySelector('#due-date');
+    const priority = document.querySelector('#priority');
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
     dueDate.value = format(parse(projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate, 'MM/dd/yy', new Date()), 'yyyy-MM-dd');
+    if (projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority) priority.checked = true;
+    else priority.checked = false;
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.setAttribute('data-td-index', tdIndex);
