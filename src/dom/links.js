@@ -1,5 +1,5 @@
 import { projectFolders } from "../index";
-import { checkListTodo, removeTodo } from "../controllers/todos";
+import { checkListTodo, removeListTodo } from "../controllers/todos";
 import { displayEditTodoModal } from "../dom/modal";
 import { format, addDays } from "date-fns";
 
@@ -38,7 +38,7 @@ function displayToday() {
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
-                deleteButton.addEventListener('click', removeTodo);
+                deleteButton.addEventListener('click', removeListTodo);
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
@@ -101,11 +101,11 @@ function displayUpcoming() {
                 checkbox.setAttribute('data-pf-index', pfIndex);
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
-                checkbox.addEventListener('change', checkTodo);
+                checkbox.addEventListener('change', checkListTodo);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
-                deleteButton.addEventListener('click', removeTodo);
+                deleteButton.addEventListener('click', removeListTodo);
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);

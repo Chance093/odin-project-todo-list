@@ -40,6 +40,14 @@ function removeTodo(e) {
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex)
 }
 
+function removeListTodo(e) {
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1);
+    displayToday();
+}
+
 function checkTodo(e) {
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
@@ -61,4 +69,4 @@ function checkListTodo(e) {
     displayToday();
 }
 
-export { addTodo, editTodo, removeTodo, checkTodo, checkListTodo };
+export { addTodo, editTodo, removeTodo, removeListTodo, checkTodo, checkListTodo };
