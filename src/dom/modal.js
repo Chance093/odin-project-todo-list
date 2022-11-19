@@ -46,10 +46,12 @@ function displayTodoModal(e) {
     const modalButton = document.querySelector('.td-button');
     const taskName = document.querySelector('#task-name');
     const dueDate = document.querySelector('#due-date');
+    const priority = document.querySelector('#priority');
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     taskName.value = '';
     dueDate.value = '';
+    priority.checked = false;
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.addEventListener('click', addTodo);

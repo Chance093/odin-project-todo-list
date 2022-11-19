@@ -7,9 +7,12 @@ import { displayToday } from '../dom/links';
 function addTodo(e) {
     const taskName = document.querySelector('#task-name');
     const dueDate = document.querySelector('#due-date');
+    const priority = document.querySelector('#priority');
     const task = taskName.value;
     const date = dueDate.value;
     const newTodo = Todo(task, date);
+    if (priority.checked) newTodo.priority = true;
+    else newTodo.priority = false;
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     projectFolders[pfIndex].projects[pIndex].todos.push(newTodo);
@@ -81,6 +84,19 @@ function checkListTodo(e) {
     const tdIndex = e.target.dataset.tdIndex;
     projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
     displayToday();
+}
+
+function prioritizeTodo(e) {
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    if (this.checked) {
+        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = true;
+        displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+    } else {
+        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = false;
+        displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+    }
 }
 
 export { addTodo, editTodo, editListTodo, removeTodo, removeListTodo, checkTodo, checkListTodo };

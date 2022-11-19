@@ -4,7 +4,8 @@ function Todo(task, date) {
     const dateCreated = new Date();
     const formattedDate = format(parseISO(date), 'MM/dd/yy');
     let taskComplete = false;
-    return { task, formattedDate, dateCreated, taskComplete };
+    let priority = false;
+    return { task, formattedDate, dateCreated, taskComplete, priority };
 }
 
 function Project(name, description) {
