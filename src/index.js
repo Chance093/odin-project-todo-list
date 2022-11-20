@@ -2,7 +2,7 @@ import './style.css';
 import { addProjectFolder } from './controllers/project-folders';
 import { setExamples } from './example';
 import { removeProjectModal, removeTodoModal } from './dom/modal';
-import { displayToday, displayUpcoming } from './dom/links';
+import { displayPriority, displayToday, displayUpcoming } from './dom/links';
 
 const projectFolders = [];
 
@@ -19,6 +19,8 @@ const todayLink = document.querySelector('.today-link');
 todayLink.addEventListener('click', displayToday);
 const upcomingLink = document.querySelector('.upcoming-link');
 upcomingLink.addEventListener('click', displayUpcoming);
+const priorityLink = document.querySelector('.priority-link');
+priorityLink.addEventListener('click', displayPriority);
 
 setExamples();
 

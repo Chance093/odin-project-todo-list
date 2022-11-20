@@ -105,6 +105,7 @@ function removeTodoModal() {
     modalButton.removeAttribute('data-td-index');
     modalButton.removeEventListener('click', addTodo);
     modalButton.removeEventListener('click', editTodo);
+    modalButton.removeEventListener('click', editListTodo);
     modal.classList.remove('show');
 }
 
