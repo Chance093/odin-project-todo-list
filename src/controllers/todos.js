@@ -2,7 +2,6 @@ import { projectFolders } from '../index';
 import { Todo } from '../factory-functions';
 import { displayProject } from '../dom/projects';
 import { removeTodoModal } from '../dom/modal';
-import { displayToday } from '../dom/links';
 
 function addTodo(e) {
     const taskName = document.querySelector('#task-name');
@@ -38,37 +37,12 @@ function editTodo(e) {
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
 }
 
-function editListTodo(e) {
-    const taskName = document.querySelector('#task-name');
-    const dueDate = document.querySelector('#due-date');
-    const priority = document.querySelector('#priority');
-    const task = taskName.value;
-    const date = dueDate.value;
-    const editedTodo = Todo(task, date);
-    if (priority.checked) editedTodo.priority = true;
-    else editedTodo.priority = false;
-    const pfIndex = e.target.dataset.pfIndex;
-    const pIndex = e.target.dataset.pIndex;
-    const tdIndex = e.target.dataset.tdIndex;
-    projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1, editedTodo);
-    removeTodoModal();
-    displayToday();
-}
-
 function removeTodo(e) {
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1);
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex)
-}
-
-function removeListTodo(e) {
-    const pfIndex = e.target.dataset.pfIndex;
-    const pIndex = e.target.dataset.pIndex;
-    const tdIndex = e.target.dataset.tdIndex;
-    projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1);
-    displayToday();
 }
 
 function checkTodo(e) {
@@ -84,12 +58,15 @@ function checkTodo(e) {
     }
 }
 
-function checkListTodo(e) {
-    const pfIndex = e.target.dataset.pfIndex;
-    const pIndex = e.target.dataset.pIndex;
-    const tdIndex = e.target.dataset.tdIndex;
-    projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
-    displayToday();
+function sortTodosByChecked(todos) {
+    todos.sort((a, b) => {
+        if (a.taskComplete && !b.taskComplete) return 1;
+        else if (!a.taskComplete && b.taskComplete) return -1;
+        else return 0;
+    })
+    return todos;
 }
 
-export { addTodo, editTodo, editListTodo, removeTodo, removeListTodo, checkTodo, checkListTodo };
+
+
+export { addTodo, editTodo, removeTodo, checkTodo, sortTodosByChecked };

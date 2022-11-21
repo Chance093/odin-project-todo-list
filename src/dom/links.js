@@ -1,7 +1,9 @@
 import { projectFolders } from "../index";
-import { checkListTodo, removeListTodo } from "../controllers/todos";
-import { displayEditListTodoModal } from "../dom/modal";
+import { displayEditTodoModalPriority, displayEditTodoModalToday, displayEditTodoModalUpcoming } from "../dom/modal";
 import { format, addDays } from "date-fns";
+import { checkTodoToday, removeTodoToday } from "../controllers/today";
+import { checkTodoUpcoming, removeTodoUpcoming } from "../controllers/upcoming";
+import { checkTodoPriority, removeTodoPriority } from "../controllers/priority";
 
 function displayToday() {
     const mainContainer = document.querySelector('main');
@@ -34,15 +36,15 @@ function displayToday() {
                 checkbox.setAttribute('data-pf-index', pfIndex);
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
-                checkbox.addEventListener('change', checkListTodo);
+                checkbox.addEventListener('change', checkTodoToday);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
-                deleteButton.addEventListener('click', removeListTodo);
+                deleteButton.addEventListener('click', removeTodoToday);
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
-                editButton.addEventListener('click', displayEditListTodoModal);
+                editButton.addEventListener('click', displayEditTodoModalToday);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
                 editButton.textContent = '/';
@@ -101,15 +103,15 @@ function displayUpcoming() {
                 checkbox.setAttribute('data-pf-index', pfIndex);
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
-                checkbox.addEventListener('change', checkListTodo);
+                checkbox.addEventListener('change', checkTodoUpcoming);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
-                deleteButton.addEventListener('click', removeListTodo);
+                deleteButton.addEventListener('click', removeTodoUpcoming);
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
-                editButton.addEventListener('click', displayEditListTodoModal);
+                editButton.addEventListener('click', displayEditTodoModalUpcoming);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
                 editButton.textContent = '/';
@@ -162,15 +164,15 @@ function displayPriority() {
                 checkbox.setAttribute('data-pf-index', pfIndex);
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
-                checkbox.addEventListener('change', checkListTodo);
+                checkbox.addEventListener('change', checkTodoPriority);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
-                deleteButton.addEventListener('click', removeListTodo);
+                deleteButton.addEventListener('click', removeTodoPriority);
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
-                editButton.addEventListener('click', displayEditListTodoModal);
+                editButton.addEventListener('click', displayEditTodoModalPriority);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
                 editButton.textContent = '/';

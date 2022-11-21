@@ -2,7 +2,7 @@ import { displayEditProjectModal, displayEditTodoModal, displayProjectModal, dis
 import { removeProject, selectProject } from "../controllers/projects";
 import { checkTodo, removeTodo } from "../controllers/todos";
 import { projectFolders } from "..";
-import { sortTodosByChecked } from "../controllers/sorter";
+import { sortTodosByChecked } from "../controllers/todos";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');

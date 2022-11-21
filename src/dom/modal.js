@@ -2,6 +2,9 @@ import { projectFolders } from "..";
 import { addProject, editProject } from "../controllers/projects";
 import { addTodo, editTodo, editListTodo } from "../controllers/todos";
 import { format, parse } from "date-fns";
+import { editTodoToday } from "../controllers/today";
+import { editTodoUpcoming } from "../controllers/upcoming";
+import { editTodoPriority } from "../controllers/priority"
 
 function displayProjectModal(e) {
     const modal = document.querySelector('.project-modal');
@@ -78,7 +81,7 @@ function displayEditTodoModal(e) {
     modal.classList.add('show');
 }
 
-function displayEditListTodoModal(e) {
+function displayEditTodoModalToday(e) {
     const modal = document.querySelector('.todo-modal');
     const modalButton = document.querySelector('.td-button');
     const taskName = document.querySelector('#task-name');
@@ -93,7 +96,45 @@ function displayEditListTodoModal(e) {
     modalButton.setAttribute('data-pf-index', pfIndex);
     modalButton.setAttribute('data-p-index', pIndex);
     modalButton.setAttribute('data-td-index', tdIndex);
-    modalButton.addEventListener('click', editListTodo);
+    modalButton.addEventListener('click', editTodoToday);
+    modal.classList.add('show');
+}
+
+function displayEditTodoModalUpcoming(e) {
+    const modal = document.querySelector('.todo-modal');
+    const modalButton = document.querySelector('.td-button');
+    const taskName = document.querySelector('#task-name');
+    const dueDate = document.querySelector('#due-date');
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
+    dueDate.value = format(parse(projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate, 'MM/dd/yy', new Date()), 'yyyy-MM-dd');
+    if (projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority) priority.checked = true;
+    else priority.checked = false;
+    modalButton.setAttribute('data-pf-index', pfIndex);
+    modalButton.setAttribute('data-p-index', pIndex);
+    modalButton.setAttribute('data-td-index', tdIndex);
+    modalButton.addEventListener('click', editTodoUpcoming);
+    modal.classList.add('show');
+}
+
+function displayEditTodoModalPriority(e) {
+    const modal = document.querySelector('.todo-modal');
+    const modalButton = document.querySelector('.td-button');
+    const taskName = document.querySelector('#task-name');
+    const dueDate = document.querySelector('#due-date');
+    const pfIndex = e.target.dataset.pfIndex;
+    const pIndex = e.target.dataset.pIndex;
+    const tdIndex = e.target.dataset.tdIndex;
+    taskName.value = projectFolders[pfIndex].projects[pIndex].todos[tdIndex].task;
+    dueDate.value = format(parse(projectFolders[pfIndex].projects[pIndex].todos[tdIndex].formattedDate, 'MM/dd/yy', new Date()), 'yyyy-MM-dd');
+    if (projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority) priority.checked = true;
+    else priority.checked = false;
+    modalButton.setAttribute('data-pf-index', pfIndex);
+    modalButton.setAttribute('data-p-index', pIndex);
+    modalButton.setAttribute('data-td-index', tdIndex);
+    modalButton.addEventListener('click', editTodoPriority);
     modal.classList.add('show');
 }
 
@@ -105,9 +146,11 @@ function removeTodoModal() {
     modalButton.removeAttribute('data-td-index');
     modalButton.removeEventListener('click', addTodo);
     modalButton.removeEventListener('click', editTodo);
-    modalButton.removeEventListener('click', editListTodo);
+    modalButton.removeEventListener('click', editTodoToday);
+    modalButton.removeEventListener('click', editTodoUpcoming);
+    modalButton.removeEventListener('click', editTodoPriority);
     modal.classList.remove('show');
 }
 
 
-export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal, displayEditListTodoModal };
+export { displayProjectModal, removeProjectModal, displayTodoModal, removeTodoModal, displayEditTodoModal, displayEditProjectModal, displayEditTodoModalToday, displayEditTodoModalUpcoming, displayEditTodoModalPriority };
