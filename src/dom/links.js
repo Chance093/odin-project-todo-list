@@ -64,6 +64,16 @@ function displayToday() {
             })
         })
     })
+    if (!pastDueList.hasChildNodes()) {
+        const noPastList = document.createElement('p');
+        noPastList.textContent = 'You have nothing past due.';
+        pastDueList.appendChild(noPastList);
+    }
+    if (!todayList.hasChildNodes()) {
+        const noTodayList = document.createElement('p');
+        noTodayList.textContent = 'You have nothing due today.';
+        todayList.appendChild(noTodayList);
+    }
     mainContainer.appendChild(documentHeader);
     mainContainer.appendChild(pastDueHeader);
     mainContainer.appendChild(pastDueList);
@@ -131,6 +141,16 @@ function displayUpcoming() {
             })
         })
     })
+    if (!tomorrowList.hasChildNodes()) {
+        const noTomorrowList = document.createElement('p');
+        noTomorrowList.textContent = 'You have nothing due tomorrow.';
+        tomorrowList.appendChild(noTomorrowList);
+    }
+    if (!thisWeekList.hasChildNodes()) {
+        const noThisWeekList = document.createElement('p');
+        noThisWeekList.textContent = 'You have nothing due this week.';
+        thisWeekList.appendChild(noThisWeekList);
+    }
     mainContainer.appendChild(documentHeader);
     mainContainer.appendChild(tomorrowHeader);
     mainContainer.appendChild(tomorrowList);
