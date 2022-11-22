@@ -203,7 +203,7 @@ header {
 main {
     grid-area: 2 / 2 / 3 / 3;
     background-color: var(--primarycolor);
-    padding: 3rem;
+    padding: 6rem;
 }
 
 main>.p-header {
@@ -237,7 +237,7 @@ main>.p-header>div>img:first-child {
 
 main>.p-description {
     font-size: 1.2rem;
-    line-height: 1.3;
+    line-height: 1.5;
     margin-bottom: 4rem;
 }
 
