@@ -1,6 +1,6 @@
 import { projectFolders } from '../index';
 import { Todo } from '../factory-functions';
-import { displayProject } from '../dom/projects';
+import { displayFolders, displayProject } from '../dom/projects';
 import { removeTodoModal } from '../dom/modal';
 
 function addTodo(e) {
@@ -17,7 +17,7 @@ function addTodo(e) {
     projectFolders[pfIndex].projects[pIndex].todos.push(newTodo);
     removeTodoModal();
     displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
-    console.log(projectFolders);
+    displayFolders(projectFolders);
 }
 
 function editTodo(e) {
@@ -53,9 +53,11 @@ function checkTodo(e) {
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = false;
         displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+        displayFolders(projectFolders);
     } else {
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = false;
         displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
+        displayFolders(projectFolders);
     }
 }
 

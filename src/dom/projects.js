@@ -12,16 +12,15 @@ import priorityIcon from "../icons/star.png";
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
     list.innerHTML = '';
-    folders.forEach((folder, index) => {
+    folders.forEach((folder, pfIndex) => {
         const projFolder = document.createElement('li');
         const button = document.createElement('img');
         const div = document.createElement('div');
         const projectList = document.createElement('ul');
-        const pfIndex = index;
         projectList.classList.add('project-list');
-        projectList.setAttribute('data-pf-index', index);
+        projectList.setAttribute('data-pf-index', pfIndex);
         button.classList.add('pf-button');
-        button.setAttribute('data-button-index', index);
+        button.setAttribute('data-button-index', pfIndex);
         button.src = addOrangeIcon;
         button.addEventListener('click', displayProjectModal);
         div.textContent = folder.name;
@@ -31,11 +30,18 @@ function displayFolders(folders) {
         projFolder.appendChild(projectList);
         list.appendChild(projFolder);
         const projects = folder.projects;
-        projects.forEach((project, index) => {
+        projects.forEach((project, pIndex) => {
             const proj = document.createElement('li');
-            proj.setAttribute('data-p-index', index);
+            proj.setAttribute('data-p-index', pIndex);
             proj.setAttribute('data-pf-index', pfIndex);
             proj.textContent = project.name;
+            const todoNumber = document.createElement('p');
+            let num = 0;
+            projectFolders[pfIndex].projects[pIndex].todos.forEach(todo => {
+                if (!todo.taskComplete) num++;
+            })
+            todoNumber.textContent = num;
+            proj.appendChild(todoNumber);
             projectList.appendChild(proj)
             proj.addEventListener('click', selectProject);
         })
