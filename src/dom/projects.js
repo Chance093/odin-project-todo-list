@@ -4,6 +4,7 @@ import { checkTodo, removeTodo } from "../controllers/todos";
 import { projectFolders } from "..";
 import { sortTodosByChecked } from "../controllers/todos";
 import deleteIcon from "../icons/delete.svg";
+import editIcon from "../icons/edit.png";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -47,7 +48,7 @@ function displayProject(project, pfIndex, pIndex) {
     const todoList = document.createElement('ul');
     const projectHeader = document.createElement('h1');
     const projectDelete = document.createElement('img');
-    const projectEdit = document.createElement('button');
+    const projectEdit = document.createElement('img');
     const todoHeader = document.createElement('h2');
     const addTodo = document.createElement('button');
     addTodo.setAttribute('data-pf-index', pfIndex);
@@ -61,6 +62,7 @@ function displayProject(project, pfIndex, pIndex) {
     projectEdit.classList.add('p-edit');
     projectEdit.setAttribute('data-pf-index', pfIndex);
     projectEdit.setAttribute('data-p-index', pIndex);
+    projectEdit.src = editIcon;
     projectEdit.addEventListener('click', displayEditProjectModal);
     divHeader.classList.add('p-header');
     description.classList.add('p-description');
@@ -95,7 +97,7 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         const checkbox = document.createElement('input');
         const task = document.createElement('label');
         const date = document.createElement('p');
-        const editButton = document.createElement('button');
+        const editButton = document.createElement('img');
         const deleteButton = document.createElement('img');
         deleteButton.setAttribute('data-pf-index', pfIndex);
         deleteButton.setAttribute('data-p-index', pIndex);
@@ -105,6 +107,7 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         editButton.setAttribute('data-pf-index', pfIndex);
         editButton.setAttribute('data-p-index', pIndex);
         editButton.setAttribute('data-td-index', tdIndex);
+        editButton.src = editIcon;
         editButton.addEventListener('click', displayEditTodoModal);
         leftContainer.classList.add('left-container');
         rightContainer.classList.add('right-container');

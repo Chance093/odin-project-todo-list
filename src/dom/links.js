@@ -5,6 +5,7 @@ import { checkTodoToday, removeTodoToday } from "../controllers/today";
 import { checkTodoUpcoming, removeTodoUpcoming } from "../controllers/upcoming";
 import { checkTodoPriority, removeTodoPriority } from "../controllers/priority";
 import deleteIcon from "../icons/delete.svg";
+import editIcon from "../icons/edit.png";
 
 function displayToday() {
     const mainContainer = document.querySelector('main');
@@ -28,7 +29,7 @@ function displayToday() {
                 const checkbox = document.createElement('input');
                 const task = document.createElement('p');
                 const date = document.createElement('p');
-                const editButton = document.createElement('button');
+                const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
                 leftContainer.classList.add('left-container');
                 rightContainer.classList.add('right-container');
@@ -46,6 +47,7 @@ function displayToday() {
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
+                editButton.src = editIcon;
                 editButton.addEventListener('click', displayEditTodoModalToday);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
@@ -106,7 +108,7 @@ function displayUpcoming() {
                 const checkbox = document.createElement('input');
                 const task = document.createElement('p');
                 const date = document.createElement('p');
-                const editButton = document.createElement('button');
+                const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
                 leftContainer.classList.add('left-container');
                 rightContainer.classList.add('right-container');
@@ -124,6 +126,7 @@ function displayUpcoming() {
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
+                editButton.src = editIcon;
                 editButton.addEventListener('click', displayEditTodoModalUpcoming);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
@@ -178,7 +181,7 @@ function displayPriority() {
                 const checkbox = document.createElement('input');
                 const task = document.createElement('p');
                 const date = document.createElement('p');
-                const editButton = document.createElement('button');
+                const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
                 leftContainer.classList.add('left-container');
                 rightContainer.classList.add('right-container');
@@ -196,6 +199,7 @@ function displayPriority() {
                 editButton.setAttribute('data-pf-index', pfIndex);
                 editButton.setAttribute('data-p-index', pIndex);
                 editButton.setAttribute('data-td-index', tdIndex);
+                editButton.src = editIcon;
                 editButton.addEventListener('click', displayEditTodoModalPriority);
                 task.textContent = td.task;
                 date.textContent = td.formattedDate;
