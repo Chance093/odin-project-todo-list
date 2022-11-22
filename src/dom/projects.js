@@ -3,6 +3,7 @@ import { removeProject, selectProject } from "../controllers/projects";
 import { checkTodo, removeTodo } from "../controllers/todos";
 import { projectFolders } from "..";
 import { sortTodosByChecked } from "../controllers/todos";
+import deleteIcon from "../icons/delete.svg";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -45,7 +46,7 @@ function displayProject(project, pfIndex, pIndex) {
     const todoHeaderContainer = document.createElement('div');
     const todoList = document.createElement('ul');
     const projectHeader = document.createElement('h1');
-    const projectDelete = document.createElement('button');
+    const projectDelete = document.createElement('img');
     const projectEdit = document.createElement('button');
     const todoHeader = document.createElement('h2');
     const addTodo = document.createElement('button');
@@ -55,6 +56,7 @@ function displayProject(project, pfIndex, pIndex) {
     projectDelete.classList.add('p-delete');
     projectDelete.setAttribute('data-pf-index', pfIndex);
     projectDelete.setAttribute('data-p-index', pIndex);
+    projectDelete.src = deleteIcon;
     projectDelete.addEventListener('click', removeProject);
     projectEdit.classList.add('p-edit');
     projectEdit.setAttribute('data-pf-index', pfIndex);
@@ -94,10 +96,11 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         const task = document.createElement('label');
         const date = document.createElement('p');
         const editButton = document.createElement('button');
-        const deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('img');
         deleteButton.setAttribute('data-pf-index', pfIndex);
         deleteButton.setAttribute('data-p-index', pIndex);
         deleteButton.setAttribute('data-td-index', tdIndex);
+        deleteButton.src = deleteIcon;
         deleteButton.addEventListener('click', removeTodo);
         editButton.setAttribute('data-pf-index', pfIndex);
         editButton.setAttribute('data-p-index', pIndex);

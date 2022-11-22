@@ -217,9 +217,10 @@ main>.p-header>div {
     gap: 20px;
 }
 
-main>.p-header>div>button {
-    width: 3rem;
-    height: 2rem;
+main>.p-header>div>img {
+    width: auto;
+    height: 4rem;
+    cursor: pointer;
 }
 
 main>.p-description {
@@ -264,6 +265,13 @@ main>.todo-list>li>.right-container,
 main>ul>li>.right-container {
     gap: 20px;
     font-size: 1.5rem;
+}
+
+main>.todo-list>li>.right-container>img,
+main>ul>li>.right-container>img {
+    height: 2rem;
+    width: auto;
+    cursor: pointer;
 }
 
 main>.todo-list>li>.left-container,
