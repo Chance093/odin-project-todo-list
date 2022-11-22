@@ -297,8 +297,16 @@ main>ul>li>.right-container>img:first-of-type {
 
 main>.todo-list>li>.left-container,
 main>ul>li>.left-container {
-    gap: 5px;
+    gap: 10px;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+main>.todo-list>li>.left-container>img,
+main>ul>li>.left-container>img {
+    height: 1.5rem;
+    width: auto;
 }
 
 main>.todo-list>li>.left-container>input:checked+label {

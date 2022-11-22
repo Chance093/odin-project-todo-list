@@ -6,6 +6,7 @@ import { checkTodoUpcoming, removeTodoUpcoming } from "../controllers/upcoming";
 import { checkTodoPriority, removeTodoPriority } from "../controllers/priority";
 import deleteIcon from "../icons/delete.svg";
 import editIcon from "../icons/edit.png";
+import priorityIcon from "../icons/star.png";
 
 function displayToday() {
     const mainContainer = document.querySelector('main');
@@ -55,6 +56,11 @@ function displayToday() {
                 deleteButton.textContent = 'X';
                 leftContainer.appendChild(checkbox);
                 leftContainer.appendChild(task);
+                if (td.priority) {
+                    const priority = document.createElement('img');
+                    priority.src = priorityIcon;
+                    leftContainer.appendChild(priority);
+                }
                 rightContainer.appendChild(date);
                 rightContainer.appendChild(editButton);
                 rightContainer.appendChild(deleteButton);
@@ -134,6 +140,11 @@ function displayUpcoming() {
                 deleteButton.textContent = 'X';
                 leftContainer.appendChild(checkbox);
                 leftContainer.appendChild(task);
+                if (td.priority) {
+                    const priority = document.createElement('img');
+                    priority.src = priorityIcon;
+                    leftContainer.appendChild(priority);
+                }
                 rightContainer.appendChild(date);
                 rightContainer.appendChild(editButton);
                 rightContainer.appendChild(deleteButton);
@@ -207,6 +218,11 @@ function displayPriority() {
                 deleteButton.textContent = 'X';
                 leftContainer.appendChild(checkbox);
                 leftContainer.appendChild(task);
+                if (td.priority) {
+                    const priority = document.createElement('img');
+                    priority.src = priorityIcon;
+                    leftContainer.appendChild(priority);
+                }
                 rightContainer.appendChild(date);
                 rightContainer.appendChild(editButton);
                 rightContainer.appendChild(deleteButton);

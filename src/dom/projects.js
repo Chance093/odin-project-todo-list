@@ -7,6 +7,7 @@ import deleteIcon from "../icons/delete.svg";
 import editIcon from "../icons/edit.png";
 import addOrangeIcon from "../icons/add.svg";
 import addWhiteIcon from "../icons/add-white.svg";
+import priorityIcon from "../icons/star.png";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
@@ -132,6 +133,11 @@ function displayTodos(todos, todoList, pfIndex, pIndex) {
         deleteButton.textContent = 'X';
         leftContainer.appendChild(checkbox);
         leftContainer.appendChild(task);
+        if (todo.priority) {
+            const priority = document.createElement('img');
+            priority.src = priorityIcon;
+            leftContainer.appendChild(priority);
+        }
         rightContainer.appendChild(date);
         rightContainer.appendChild(editButton);
         rightContainer.appendChild(deleteButton);
