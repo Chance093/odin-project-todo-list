@@ -229,6 +229,10 @@ main>.p-header>div>img {
     cursor: pointer;
 }
 
+main>.p-header>div>img:first-child {
+    height: 3.4rem;
+}
+
 main>.p-description {
     font-size: 1.2rem;
     line-height: 1.3;
@@ -270,8 +274,13 @@ main>ul>li>div {
 
 main>.todo-list>li>.right-container,
 main>ul>li>.right-container {
-    gap: 20px;
+    gap: 10px;
     font-size: 1.5rem;
+}
+
+main>.todo-list>li>.right-container>p,
+main>ul>li>.right-container>p {
+    margin-right: 1rem;
 }
 
 main>.todo-list>li>.right-container>img,
@@ -279,6 +288,11 @@ main>ul>li>.right-container>img {
     height: 2rem;
     width: auto;
     cursor: pointer;
+}
+
+main>.todo-list>li>.right-container>img:first-of-type,
+main>ul>li>.right-container>img:first-of-type {
+    height: 1.8rem;
 }
 
 main>.todo-list>li>.left-container,
