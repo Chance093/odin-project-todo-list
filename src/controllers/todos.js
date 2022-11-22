@@ -51,6 +51,7 @@ function checkTodo(e) {
     const tdIndex = e.target.dataset.tdIndex;
     if (this.checked) {
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
+        projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = false;
         displayProject(projectFolders[pfIndex].projects[pIndex], pfIndex, pIndex);
     } else {
         projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = false;

@@ -33,6 +33,7 @@ function checkTodoPriority(e) {
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
+    projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = false;
     displayPriority();
 }
 
