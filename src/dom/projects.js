@@ -5,13 +5,15 @@ import { projectFolders } from "..";
 import { sortTodosByChecked } from "../controllers/todos";
 import deleteIcon from "../icons/delete.svg";
 import editIcon from "../icons/edit.png";
+import addOrangeIcon from "../icons/add.svg";
+import addWhiteIcon from "../icons/add-white.svg";
 
 function displayFolders(folders) {
     const list = document.querySelector('.project-folder-list');
     list.innerHTML = '';
     folders.forEach((folder, index) => {
         const projFolder = document.createElement('li');
-        const button = document.createElement('button');
+        const button = document.createElement('img');
         const div = document.createElement('div');
         const projectList = document.createElement('ul');
         const pfIndex = index;
@@ -19,6 +21,7 @@ function displayFolders(folders) {
         projectList.setAttribute('data-pf-index', index);
         button.classList.add('pf-button');
         button.setAttribute('data-button-index', index);
+        button.src = addOrangeIcon;
         button.addEventListener('click', displayProjectModal);
         div.textContent = folder.name;
         button.textContent = '+';
@@ -50,9 +53,10 @@ function displayProject(project, pfIndex, pIndex) {
     const projectDelete = document.createElement('img');
     const projectEdit = document.createElement('img');
     const todoHeader = document.createElement('h2');
-    const addTodo = document.createElement('button');
+    const addTodo = document.createElement('img');
     addTodo.setAttribute('data-pf-index', pfIndex);
     addTodo.setAttribute('data-p-index', pIndex);
+    addTodo.src = addWhiteIcon;
     addTodo.addEventListener('click', displayTodoModal);
     projectDelete.classList.add('p-delete');
     projectDelete.setAttribute('data-pf-index', pfIndex);

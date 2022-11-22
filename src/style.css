@@ -186,6 +186,12 @@ header {
     padding: 5px;
 }
 
+.sidebar>.links>.project-folder-list>li>div>img {
+    height: 2rem;
+    width: auto;
+    cursor: pointer;
+}
+
 .sidebar>.links>.project-folder-list>li>.project-list>li {
     font-size: 1.1rem;
     margin: 1rem;
@@ -241,9 +247,10 @@ main>.todo-header>h2 {
     font-size: 2.5rem;
 }
 
-main>.todo-header>button {
-    width: 2rem;
-    height: 2rem;
+main>.todo-header>img {
+    width: auto;
+    height: 2.5rem;
+    cursor: pointer;
 }
 
 main>.todo-list>li,
