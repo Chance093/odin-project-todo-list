@@ -2,6 +2,7 @@ import { projectFolders } from "../index";
 import { Todo } from "../factory-functions";
 import { removeTodoModal } from "../dom/modal";
 import { displayPriority } from "../dom/links";
+import { displayFolders } from "../dom/projects";
 
 function editTodoPriority(e) {
     const taskName = document.querySelector('#task-name');
@@ -25,6 +26,7 @@ function removeTodoPriority(e) {
     const pIndex = e.target.dataset.pIndex;
     const tdIndex = e.target.dataset.tdIndex;
     projectFolders[pfIndex].projects[pIndex].todos.splice(tdIndex, 1);
+    displayFolders(projectFolders);
     displayPriority();
 }
 
@@ -34,6 +36,7 @@ function checkTodoPriority(e) {
     const tdIndex = e.target.dataset.tdIndex;
     projectFolders[pfIndex].projects[pIndex].todos[tdIndex].taskComplete = true;
     projectFolders[pfIndex].projects[pIndex].todos[tdIndex].priority = false;
+    displayFolders(projectFolders);
     displayPriority();
 }
 

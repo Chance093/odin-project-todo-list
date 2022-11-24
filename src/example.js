@@ -23,7 +23,6 @@ function setExamples() {
     projectFolders.push(projectFolder2);
     displayFolders(projectFolders);
     displayProject(project1, 0, 0);
-    console.log(projectFolders);
 }
 
 function cleanHouse() {
