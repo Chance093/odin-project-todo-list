@@ -139,6 +139,7 @@ table {
     --secondarycolor: black;
     --tertiarycolor: #CC854E;
     --headercolor: #DC5F00;
+    --othercolor: #B85252;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -345,18 +346,20 @@ main>h2 {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    z-index: -10;
 }
 
 .modal-container.show {
     pointer-events: auto;
     opacity: 1;
+    z-index: 0;
 }
 
 .modal {
-    background-color: rgb(26, 26, 26);
+    background-color: var(--primarycolor);
     color: white;
-    border: 3px solid rgb(95, 252, 239);
-    height: 500px;
+    border: 3px solid var(--tertiarycolor);
+    height: 250px;
     width: 400px;
     max-width: 100%;
     padding: 30px 50px;
@@ -366,4 +369,139 @@ main>h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.modal>h1 {
+    font-size: 2rem;
+    color: white;
+    padding: 5px 7rem;
+}
+
+.modal>.task>input {
+    height: 30px;
+    width: 350px;
+    background-color: var(--primarycolor);
+    font-size: 1.3rem;
+    border: none;
+    border-bottom: 2px solid var(--tertiarycolor);
+    color: white;
+    font-weight: 200;
+    padding-left: 5px;
+}
+
+.modal>.task>input:focus {
+    outline: none;
+}
+
+.modal>.props {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.modal>.props>.date,
+.modal>.props>.priority {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal>.props>.date>label:first-child,
+.modal>.props>.priority>label:first-child {
+    font-size: 1.3rem;
+}
+
+.modal>.props>.date {
+    margin-left: 10px;
+}
+
+.modal>.props>.priority {
+    margin-right: 35px;
+}
+
+.modal>.buttons {
+    display: flex;
+    gap: 30px;
+}
+
+.modal>.buttons>.ctd-button {
+    background-color: var(--primarycolor);
+    color: var(--othercolor);
+    border: 2px solid var(--othercolor);
+    border-radius: 8px;
+    height: 50px;
+    width: 150px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.modal>.buttons>.ctd-button:hover {
+    background-color: var(--othercolor);
+    color: var(--primarycolor);
+    /* font-weight: bold; */
+}
+
+.modal>.buttons>.td-button {
+    background-color: var(--primarycolor);
+    color: #BECA5C;
+    border: 2px solid #BECA5C;
+    border-radius: 8px;
+    height: 50px;
+    width: 150px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.modal>.buttons>.td-button:hover {
+    background-color: #BECA5C;
+    color: var(--primarycolor);
+    /* font-weight: bold; */
+}
+
+.toggler-wrapper {
+    display: block;
+    width: 45px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.toggler-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
+    background-color: var(--tertiarycolor);
+}
+
+.toggler-wrapper .toggler-slider {
+    background-color: #ccc;
+    position: absolute;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper .toggler-knob {
+    position: absolute;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper.style-1 input[type="checkbox"]:checked+.toggler-slider .toggler-knob {
+    left: calc(100% - 19px - 3px);
+}
+
+.toggler-wrapper.style-1 .toggler-knob {
+    width: calc(25px - 6px);
+    height: calc(25px - 6px);
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background-color: #fff;
 }
