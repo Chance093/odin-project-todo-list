@@ -371,7 +371,8 @@ main>h2 {
     margin-top: 2rem;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+.left-container>label {
     cursor: pointer;
 }
 

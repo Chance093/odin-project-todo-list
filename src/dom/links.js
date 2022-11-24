@@ -28,7 +28,7 @@ function displayToday() {
                 const leftContainer = document.createElement('div');
                 const rightContainer = document.createElement('div');
                 const checkbox = document.createElement('input');
-                const task = document.createElement('p');
+                const task = document.createElement('label');
                 const date = document.createElement('p');
                 const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
@@ -40,6 +40,7 @@ function displayToday() {
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
                 checkbox.addEventListener('change', checkTodoToday);
+                task.setAttribute('for', `todo${tdIndex}`);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
@@ -112,7 +113,7 @@ function displayUpcoming() {
                 const leftContainer = document.createElement('div');
                 const rightContainer = document.createElement('div');
                 const checkbox = document.createElement('input');
-                const task = document.createElement('p');
+                const task = document.createElement('label');
                 const date = document.createElement('p');
                 const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
@@ -124,6 +125,7 @@ function displayUpcoming() {
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
                 checkbox.addEventListener('change', checkTodoUpcoming);
+                task.setAttribute('for', `todo${tdIndex}`);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
@@ -190,7 +192,7 @@ function displayPriority() {
                 const leftContainer = document.createElement('div');
                 const rightContainer = document.createElement('div');
                 const checkbox = document.createElement('input');
-                const task = document.createElement('p');
+                const task = document.createElement('label');
                 const date = document.createElement('p');
                 const editButton = document.createElement('img');
                 const deleteButton = document.createElement('img');
@@ -202,6 +204,7 @@ function displayPriority() {
                 checkbox.setAttribute('data-p-index', pIndex);
                 checkbox.setAttribute('data-td-index', tdIndex);
                 checkbox.addEventListener('change', checkTodoPriority);
+                task.setAttribute('for', `todo${tdIndex}`);
                 deleteButton.setAttribute('data-pf-index', pfIndex);
                 deleteButton.setAttribute('data-p-index', pIndex);
                 deleteButton.setAttribute('data-td-index', tdIndex);
