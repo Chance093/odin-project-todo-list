@@ -373,11 +373,14 @@ main>h2 {
 
 .modal>h1 {
     font-size: 2rem;
+    width: 300px;
     color: white;
     padding: 5px 7rem;
+    text-align: center;
 }
 
-.modal>.task>input {
+.modal>.task>input,
+.modal>input[type="text"] {
     height: 30px;
     width: 350px;
     background-color: var(--primarycolor);
@@ -389,7 +392,8 @@ main>h2 {
     padding-left: 5px;
 }
 
-.modal>.task>input:focus {
+.modal>.task>input:focus,
+.modal>input[type="text"]:focus {
     outline: none;
 }
 
@@ -425,7 +429,8 @@ main>h2 {
     gap: 30px;
 }
 
-.modal>.buttons>.ctd-button {
+.modal>.buttons>.ctd-button,
+.modal>.buttons>.cp-button {
     background-color: var(--primarycolor);
     color: var(--othercolor);
     border: 2px solid var(--othercolor);
@@ -436,13 +441,14 @@ main>h2 {
     cursor: pointer;
 }
 
-.modal>.buttons>.ctd-button:hover {
+.modal>.buttons>.ctd-button:hover,
+.modal>.buttons>.cp-button:hover {
     background-color: var(--othercolor);
     color: var(--primarycolor);
-    /* font-weight: bold; */
 }
 
-.modal>.buttons>.td-button {
+.modal>.buttons>.td-button,
+.modal>.buttons>.p-button {
     background-color: var(--primarycolor);
     color: #BECA5C;
     border: 2px solid #BECA5C;
@@ -453,10 +459,34 @@ main>h2 {
     cursor: pointer;
 }
 
-.modal>.buttons>.td-button:hover {
+.modal>.buttons>.td-button:hover,
+.modal>.buttons>.p-button:hover {
     background-color: #BECA5C;
     color: var(--primarycolor);
-    /* font-weight: bold; */
+}
+
+.project-modal>.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 500px;
+}
+
+.project-modal>.modal>textarea {
+    background-color: var(--primarycolor);
+    color: white;
+    border: 2px solid var(--tertiarycolor);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    width: 350px;
+    height: 400px;
+    font-size: 1rem;
+    padding: 5px;
+    resize: none;
+}
+
+.project-modal>.modal>textarea:focus {
+    outline: none;
 }
 
 .toggler-wrapper {
