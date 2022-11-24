@@ -9,6 +9,7 @@ function addTodo(e) {
     const priority = document.querySelector('#priority');
     const task = taskName.value;
     const date = dueDate.value;
+    if (!task || !date) return;
     const newTodo = Todo(task, date);
     if (priority.checked) newTodo.priority = true;
     else newTodo.priority = false;
@@ -26,6 +27,7 @@ function editTodo(e) {
     const priority = document.querySelector('#priority');
     const task = taskName.value;
     const date = dueDate.value;
+    if (!task || !date) return;
     const editedTodo = Todo(task, date);
     if (priority.checked) editedTodo.priority = true;
     else editedTodo.priority = false;

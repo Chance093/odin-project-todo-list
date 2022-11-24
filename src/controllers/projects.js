@@ -8,6 +8,7 @@ function addProject(e) {
     const projectDescription = document.querySelector('#p-desc');
     const project = projectName.value;
     const description = projectDescription.value;
+    if (!project || !description) return;
     const newProj = Project(project, description);
     const index = e.target.dataset.pfIndex;
     projectFolders[index].projects.push(newProj);
@@ -21,6 +22,7 @@ function editProject(e) {
     const projectDescription = document.querySelector('#p-desc');
     const name = projectName.value;
     const description = projectDescription.value;
+    if (!name || !description) return;
     const pfIndex = e.target.dataset.pfIndex;
     const pIndex = e.target.dataset.pIndex;
     projectFolders[pfIndex].projects[pIndex].name = name;
