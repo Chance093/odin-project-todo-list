@@ -153,6 +153,16 @@ body {
 header {
     grid-area: 1 / 1 / 2 / 3;
     background-color: var(--headercolor);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 20px;
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+
+header>img {
+    height: 50px;
 }
 
 .sidebar {
